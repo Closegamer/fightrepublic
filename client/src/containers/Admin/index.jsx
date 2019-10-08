@@ -12,6 +12,9 @@ export class Admin extends Component {
     if (contentType === 'users') {
       this.setState({ content: 'users' });
     }
+    if (contentType === 'schedule') {
+      this.setState({ content: 'schedule' });
+    }
   };
 
   render() {
@@ -31,6 +34,16 @@ export class Admin extends Component {
                       onClick={e => this.handleMonitorChange('users')}
                     >
                       Пользователи
+                    </MDBBtn>
+                  </MDBCol>
+                </MDBRow>
+                <MDBRow>
+                  <MDBCol lg={3} xs={12}>
+                    <MDBBtn
+                      className='adminBtn'
+                      onClick={e => this.handleMonitorChange('schedule')}
+                    >
+                      Расписание
                     </MDBBtn>
                   </MDBCol>
                 </MDBRow>

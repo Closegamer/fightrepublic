@@ -1,7 +1,7 @@
 {
-  "name": "CryBabyJoesSaloon",
+  "name": "FightRepublic",
   "version": "1.0.0",
-  "description": "Social Platform for Bettors",
+  "description": "Boxer School",
   "main": "server.js",
   "scripts": {
     "start": "node server",

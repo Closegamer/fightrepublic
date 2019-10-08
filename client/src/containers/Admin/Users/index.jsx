@@ -49,8 +49,6 @@ export class UsersControl extends Component {
                       <th scope='col'>Nick</th>
                       <th scope='col'>Email</th>
                       <th scope='col'>Role</th>
-                      <th scope='col'>Balance</th>
-                      <th scope='col'>Contribution</th>
                       <th scope='col'>Date</th>
                     </tr>
                   </thead>
@@ -61,8 +59,6 @@ export class UsersControl extends Component {
                           <td>{user.nick}</td>
                           <td>{user.email}</td>
                           <td>{user.role}</td>
-                          <td>{user.balance}</td>
-                          <td>{user.contribution}</td>
                           <td>{user.date}</td>
                         </tr>
                       );
