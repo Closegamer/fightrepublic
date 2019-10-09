@@ -4,11 +4,13 @@ import balance from './balance';
 import auth from './auth';
 import users from './users';
 import app from './app';
+import lessons from './lessons';
 
 export default combineReducers({
   auth,
   balance,
   form,
   app,
-  users
+  users,
+  lessons
 });

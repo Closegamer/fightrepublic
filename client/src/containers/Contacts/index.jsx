@@ -33,13 +33,7 @@ export class Contacts extends Component {
     return (
       <MDBContainer className='main-container' fluid>
         <MDBRow>
-          <MDBCol xl='9' xs='12' className='bannerTop-container'>
-            <div className='banner728x90custom'></div>
-          </MDBCol>
-          <MDBCol xl='3' xs='12'></MDBCol>
-        </MDBRow>
-        <MDBRow>
-          <MDBCol xl='9' xs='12' className='contentArea-container'>
+          <MDBCol xl='12' xs='12' className='contentArea-container'>
             <h3>Контактная форма</h3>
             <MDBRow>
               <MDBCol size={4}>
@@ -51,24 +45,6 @@ export class Contacts extends Component {
                 />
               </MDBCol>
             </MDBRow>
-          </MDBCol>
-          <MDBCol xl='3' xs='12' className='bannerRight-container'>
-            <MDBRow>
-              <MDBCol xl='12' md='4' xs='4'>
-                <div className='banner240x400'></div>
-              </MDBCol>
-              <MDBCol xl='12' md='4' xs='4'>
-                <div className='banner240x400'></div>
-              </MDBCol>
-              <MDBCol xl='12' md='4' xs='4'>
-                <div className='banner240x400'></div>
-              </MDBCol>
-            </MDBRow>
-          </MDBCol>
-        </MDBRow>
-        <MDBRow>
-          <MDBCol xl='9' xs='12' className='bannerBottom-container'>
-            <div className='banner728x90custom'></div>
           </MDBCol>
         </MDBRow>
       </MDBContainer>

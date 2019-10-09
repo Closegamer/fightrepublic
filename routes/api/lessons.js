@@ -6,7 +6,7 @@ const config = require('config');
 // @route    POST api/lessons/load
 // @desc     Lessons list
 // @access   Public
-router.post('/load', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const lessons = await Lessons.find();
 
