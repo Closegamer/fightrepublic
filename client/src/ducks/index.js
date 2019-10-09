@@ -5,6 +5,7 @@ import auth from './auth';
 import users from './users';
 import app from './app';
 import lessons from './lessons';
+import masters from './masters';
 
 export default combineReducers({
   auth,
@@ -12,5 +13,6 @@ export default combineReducers({
   form,
   app,
   users,
-  lessons
+  lessons,
+  masters
 });

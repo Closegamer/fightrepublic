@@ -88,7 +88,7 @@ let Form = props => {
 };
 
 Form = reduxForm({
-  form: 'createLesson'
+  form: 'createMaster'
 })(Form);
 
 export default Form;

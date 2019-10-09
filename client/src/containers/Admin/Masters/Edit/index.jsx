@@ -2,40 +2,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MDBSpinner, MDBContainer, MDBRow, MDBCol } from 'mdbreact';
 import { bindActionCreators } from 'redux';
-import * as lessonsActions from '../../../../ducks/lessons';
+import * as mastersActions from '../../../../ducks/masters';
 import { withRouter } from 'react-router-dom';
 import Form from './Form';
-import '../../styles.css';
+import './styles.css';
 import config from '../../../../config.json';
 
 export class Edit extends Component {
   static propTypes = {};
 
   componentDidMount() {
-    const { actions, match } = this.props;
+    const { mastersActions, match } = this.props;
 
     const humanId = match.params.humanId;
     if (humanId) {
-      lessonsActions.loadLesson(humanId);
+      mastersActions.loadMaster(humanId);
     }
   }
 
   onSubmit = values => {
-    const { lessonsActions, history } = this.props;
+    const { mastersActions, history } = this.props;
 
-    return lessonsActions.createLesson(values).then(result => {
+    return mastersActions.createMaster(values).then(result => {
       if (result.success) {
-        history.replace('/admin/lessons/list');
+        history.replace('/admin/masters/list');
       }
     });
   };
 
   render() {
-    const { loadedLesson, loadedLessonInProgress, match } = this.props;
+    const { loadedMaster, loadedMasterInProgress, match } = this.props;
 
     const humanId = match.params.humanId;
 
-    if (!!humanId && (!loadedLesson || loadedLessonInProgress)) {
+    if (!!humanId && (!loadedMaster || loadedMasterInProgress)) {
       return <MDBSpinner />;
     }
 
@@ -43,13 +43,13 @@ export class Edit extends Component {
       <div className='monitor-cont'>
         <MDBRow>
           <MDBCol size='4'>
-            {humanId && <h3>Редактировать занятие</h3>}
-            {!humanId && <h3>Новое занятие</h3>}
+            {humanId && <h3>Редактировать тренера</h3>}
+            {!humanId && <h3>Новый тренер</h3>}
           </MDBCol>
         </MDBRow>
         <MDBRow>
           <MDBCol size='4'>
-            <Form onSubmit={this.onSubmit} loadedLesson={loadedLesson} />
+            <Form onSubmit={this.onSubmit} loadedMaster={loadedMaster} />
           </MDBCol>
         </MDBRow>
       </div>
@@ -57,17 +57,17 @@ export class Edit extends Component {
   }
 }
 
-const mapStateToProps = ({ lessons }) => ({
-  lessonCreationInProgress: lessons.lessonCreationInProgress,
-  lessonCreationError: lessons.lessonCreationError,
-  lessonCreatedAt: lessons.lessonCreatedAt,
+const mapStateToProps = ({ masters }) => ({
+  masterCreationInProgress: masters.masterCreationInProgress,
+  masterCreationError: masters.masterCreationError,
+  masterCreatedAt: masters.masterCreatedAt,
 
-  loadedGame: lessons.loadedLesson,
-  loadedGameInProgress: lessons.loadedLessonInProgress
+  loadedMaster: masters.loadedMaster,
+  loadedMasterInProgress: masters.loadedMasterInProgress
 });
 
 const mapDispatchToProps = dispatch => ({
-  lessonsActions: bindActionCreators({ ...lessonsActions }, dispatch)
+  mastersActions: bindActionCreators({ ...mastersActions }, dispatch)
 });
 
 export default connect(

@@ -6,6 +6,7 @@ import * as usersActions from '../../ducks/users';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Lessons from './Lessons';
 import Users from './Users';
+import Masters from './Masters';
 
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBNavLink } from 'mdbreact';
 import './styles.css';
@@ -40,12 +41,16 @@ export class Admin extends Component {
                 <MDBNavLink to={`${match.path}/users`}>
                   <MDBBtn className='adminBtn'>Пользователи</MDBBtn>
                 </MDBNavLink>
+                <MDBNavLink to={`${match.path}/masters`}>
+                  <MDBBtn className='adminBtn'>Тренеры</MDBBtn>
+                </MDBNavLink>
               </MDBCol>
               <MDBCol xs='12' sm='9' md='9' lg='9' xl='9'>
                 <Switch>
                   <Route path={`${match.path}/`} exact component={Lessons} />
                   <Route path={`${match.path}/lessons`} component={Lessons} />
                   <Route path={`${match.path}/users`} component={Users} />
+                  <Route path={`${match.path}/masters`} component={Masters} />
                   <Route component={Lost} />
                 </Switch>
               </MDBCol>
