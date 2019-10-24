@@ -8,78 +8,87 @@ import Select from 'react-select';
 import { optionsMaster, optionsRoom, optionsAge } from './selectOptions';
 import './styles.css';
 
-let Form = props => {
-  const { handleSubmit, loadedLesson } = props;
-  const animatedComponents = makeAnimated();
-  const master = 'какой-то тренер';
-  const age = 'возраст не определен';
+export const ReduxFormSelect = props => {
+  const { input, options } = props;
 
-  if (loadedLesson && loadedLesson.master) {
-    master = loadedLesson.master;
+  return (
+    <Select
+      {...input}
+      onChange={value => input.onChange(value)}
+      onBlur={() => input.onBlur(input.value)}
+      options={options}
+    />
+  );
+};
+
+let Form = props => {
+  const { handleSubmit, loadedMaster } = props;
+  const animatedComponents = makeAnimated();
+
+  if (loadedMaster && loadedMaster.firstName) {
+    const master = loadedMaster.firstName;
   }
-  if (loadedLesson && loadedLesson.age) {
-    age = loadedLesson.age;
-  }
+
   return (
     <form onSubmit={handleSubmit}>
-      <p className='selectLabel'>Id занятия (auto)</p>
-      {loadedLesson && (
-        <input
-          className='profileInput'
-          type='text'
+      {loadedMaster && (
+        <Field
           name='humanId'
-          value={loadedLesson.humanId}
-          onChange={handleSubmit}
-          readOnly
+          component={TextField}
+          value={loadedMaster.humanId}
+          type='text'
+          label='Id тренера (auto)'
+          group
         />
       )}
-      {!loadedLesson && (
-        <input
-          className='profileInput'
-          type='text'
+      {!loadedMaster && (
+        <Field
           name='humanId'
-          onChange={handleSubmit}
-          readOnly
-        />
-      )}
-      <p className='selectLabel'>Название</p>
-      {loadedLesson && (
-        <input
-          className='profileInput'
+          component={TextField}
           type='text'
-          name='lesson'
-          value={loadedLesson.lesson}
-          onChange={handleSubmit}
+          label='Id тренера (auto)'
+          group
         />
       )}
-      {!loadedLesson && (
-        <input
-          className='profileInput'
+      {loadedMaster && (
+        <Field
+          name='firstName'
+          component={TextField}
+          value={loadedMaster.firstName}
           type='text'
-          name='lesson'
-          onChange={handleSubmit}
+          label='Имя'
+          group
         />
       )}
-      <p className='selectLabel'>Тренер</p>
-      <div className='selectContainer'>
-        <Select
-          options={optionsMaster}
-          defaultValue={master}
-          components={animatedComponents}
-          isMulti
-          name='master'
+      {!loadedMaster && (
+        <Field
+          name='firstName'
+          component={TextField}
+          type='text'
+          label='Имя'
+          group
         />
-      </div>
-      <p className='selectLabel'>Возраст</p>
-      <div className='selectContainer'>
-        <Select
-          options={optionsAge}
-          defaultValue={age}
-          components={animatedComponents}
-          isMulti
-          name='age'
+      )}
+      {loadedMaster && (
+        <Field
+          name='lastName'
+          component={TextField}
+          value={loadedMaster.lastName}
+          type='text'
+          label='Фамилия'
+          group
         />
-      </div>
+      )}
+      {!loadedMaster && (
+        <Field
+          name='lastName'
+          component={TextField}
+          type='text'
+          label='Фамилия'
+          group
+        />
+      )}
+      <Field name='bigPic' component={FileField} />
       <MDBBtn type='submit' className='adminBtn mt15'>
         Создать
       </MDBBtn>

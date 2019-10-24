@@ -14,9 +14,16 @@ const MastersSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  profession: {
-    type: String,
-    required: true
+  bigPic: {
+    guid: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    ext: {
+      type: String,
+      required: true
+    }
   },
   date: {
     type: Date,

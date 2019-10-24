@@ -49,6 +49,7 @@ app.use('/api/refresh', require('./routes/api/refresh'));
 app.use('/api/public', require('./routes/api/public'));
 app.use('/api/uploads', require('./routes/api/uploads'));
 app.use('/api/lessons', require('./routes/api/lessons'));
+app.use('/api/masters', require('./routes/api/masters'));
 
 // Serve static assets in production
 app.use('/api/upload', express.static(__dirname + '/upload'));

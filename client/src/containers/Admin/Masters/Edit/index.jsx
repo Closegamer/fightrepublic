@@ -21,6 +21,7 @@ export class Edit extends Component {
   }
 
   onSubmit = values => {
+    console.log('Masters Edit onSubmit values: ', values);
     const { mastersActions, history } = this.props;
 
     return mastersActions.createMaster(values).then(result => {

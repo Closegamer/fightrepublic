@@ -19,12 +19,12 @@ export class List extends Component {
   static propTypes = {};
 
   componentDidMount() {
-    const { actions } = this.props;
+    const { mastersActions } = this.props;
     mastersActions.loadMasters();
   }
 
   deleteCurrentMaster = humanId => {
-    const { actions } = this.props;
+    const { mastersActions } = this.props;
     mastersActions.deleteMaster(humanId);
   };
 
@@ -41,13 +41,14 @@ export class List extends Component {
 
     return (
       <React.Fragment>
-        {!masters[0] ? (
+        {/* {!masters[0] ? (
           <div>Нету тренеров</div>
         ) : (
           <div className='monitor-cont'>
             <h4>Все тренеры</h4>
           </div>
-        )}
+        )} */}
+        тренеры тут
       </React.Fragment>
     );
   }

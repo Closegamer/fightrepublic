@@ -17,18 +17,39 @@ const DELETING_MASTER_START = `${prefix}/DELETING_MASTER_START`;
 const DELETING_MASTER_SUCCEED = `${prefix}/DELETING_MASTER_SUCCEED`;
 const DELETING_MASTER_FAILED = `${prefix}/DELETING_MASTER_FAILED`;
 
+const CREATE_MASTER_START = `${prefix}/CREATE_MASTER_START`;
+const CREATE_MASTER_SUCCEED = `${prefix}/CREATE_MASTER_SUCCEED`;
+const CREATE_MASTER_FAILED = `${prefix}/CREATE_MASTER_FAILED`;
+
 const loadMastersStart = () => ({
   type: LOADING_MASTERS_START
 });
 
-const loadMastersSucceed = Lesson => ({
+const loadMastersSucceed = master => ({
   type: LOADING_MASTERS_SUCCEED,
-  Lesson,
+  master,
   fetchedAt: Date.now()
 });
 
 const loadMastersFailed = error => ({
   type: LOADING_MASTERS_FAILED,
+  error
+});
+
+// Creating single master
+
+const createMasterStart = () => ({
+  type: CREATE_MASTER_START
+});
+
+const createMasterSucceed = master => ({
+  type: CREATE_MASTER_SUCCEED,
+  master,
+  fetchedAt: Date.now()
+});
+
+const createMasterFailed = error => ({
+  type: CREATE_MASTER_FAILED,
   error
 });
 
@@ -66,15 +87,25 @@ const deleteMasterFailed = error => ({
   error
 });
 
-export const createMaster = ({ firstName, lastName, profession }) => (
-  dispatch,
-  getState
-) => {
+export const createMaster = ({ bigPic, ...values }) => (dispatch, getState) => {
   dispatch(createMasterStart());
+  console.log('values: ', values);
+  let formData = new FormData();
+
+  console.log('formData: ', formData);
+  for (var key in values) {
+    formData.append(key, values[key]);
+  }
+  if (bigPic) {
+    for (var i = 0; i < bigPic.length; i++) {
+      formData.append('bigPic', bigPic[i], bigPic[i].name);
+    }
+  }
   return axios
-    .get(`/api/masters/create/${humanId}`)
+    .post(`/api/masters/create`, formData)
     .then(response => {
-      dispatch(createMasterSucceed(humanId));
+      dispatch(createMasterSucceed(response.data.master));
+      return response.data;
     })
     .catch(error => {
       dispatch(createMasterFailed(error.message));
@@ -82,6 +113,7 @@ export const createMaster = ({ firstName, lastName, profession }) => (
 };
 
 export const loadMasters = file => (dispatch, getState) => {
+  console.log('masters duck loadMasters');
   dispatch(loadMastersStart());
   return axios
     .post('/api/masters')
@@ -120,7 +152,8 @@ export const deleteMaster = humanId => (dispatch, getState) => {
 
 const initialState = Immutable({
   mastersLoadingInProgress: false,
-  mastersLoadingError: ''
+  mastersLoadingError: '',
+  masters: []
 });
 
 // Reducer
@@ -138,6 +171,24 @@ export default function reducer(state = initialState, action = {}) {
       return Immutable.merge(state, {
         mastersLoadingInProgress: false,
         mastersLoadingError: action.error
+      });
+    case CREATE_MASTER_START:
+      return Immutable.merge(state, {
+        masterCreationInProgress: true,
+        masterCreationError: ''
+      });
+
+    case CREATE_MASTER_SUCCEED:
+      return Immutable.merge(state, {
+        masterCreatedAt: action.fetchedAt,
+        masterCreationInProgress: false,
+        masterCreationError: ''
+      });
+
+    case CREATE_MASTER_FAILED:
+      return Immutable.merge(state, {
+        masterCreationInProgress: false,
+        masterCreationError: action.error
       });
     default:
       return state;
