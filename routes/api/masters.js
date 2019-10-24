@@ -9,14 +9,19 @@ const path = require('path');
 // @route    POST api/masters/load
 // @desc     Lessons list
 // @access   Public
-router.post('/', async (req, res) => {
+router.post('/list', async (req, res) => {
+  console.log('api masters list');
   try {
     const masters = await Masters.find();
 
-    res.json({
-      success: true,
-      mastersArray: masters
-    });
+    if (masters.length < 1) {
+      return res.status(400).json({
+        success: false,
+        error: 'No masters in collection'
+      });
+    }
+
+    res.json({ success: true, masters });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

@@ -1,71 +1,92 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { MDBBtn, MDBSpinner, MDBAlert, MDBIcon } from 'mdbreact';
-import { bindActionCreators } from 'redux';
-import * as mastersActions from '../../../../ducks/masters';
+import { MDBRow, MDBContainer, MDBCol, MDBBtn } from 'mdbreact';
+import axios from 'axios';
 import '../../styles.css';
-import store from '../../../../store';
 import config from '../../../../config.json';
 
 const uploadDir = config.uploadDir;
 
-export class List extends Component {
-  constructor() {
-    super();
-    this.state = {
-      endpoint: config.socketEndpoint
-    };
-  }
-  static propTypes = {};
-
-  componentDidMount() {
-    const { mastersActions } = this.props;
-    mastersActions.loadMasters();
-  }
-
-  deleteCurrentMaster = humanId => {
-    const { mastersActions } = this.props;
-    mastersActions.deleteMaster(humanId);
+export class MastersControl extends Component {
+  state = {
+    isLoading: true,
+    error: '',
+    masters: ''
   };
 
+  componentDidMount() {
+    return axios
+      .post(`/api/masters/list`)
+      .then(response => {
+        if (response.data.success) {
+          console.log('response: ', response);
+          this.setState({
+            isLoading: false,
+            error: '',
+            masters: response.data.masters
+          });
+        } else {
+          this.setState({ isLoading: false, error: response.data.error });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({
+          isLoading: false,
+          error: 'nope'
+        });
+      });
+  }
+
   render() {
-    const {
-      masters,
-      mastersLoadingInProgress,
-      mastersLoadingError
-    } = this.props;
-
-    if (!!mastersLoadingError) return <div>{mastersLoadingError}</div>;
-
-    if (mastersLoadingInProgress) return <MDBSpinner />;
-
     return (
-      <React.Fragment>
-        {/* {!masters[0] ? (
-          <div>Нету тренеров</div>
-        ) : (
-          <div className='monitor-cont'>
-            <h4>Все тренеры</h4>
-          </div>
-        )} */}
-        тренеры тут
-      </React.Fragment>
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol>
+            {!this.state.masters[0] ? (
+              <div>Тренеров не найдено</div>
+            ) : (
+              <div className='monitor-cont'>
+                <h4>Все тренеры</h4>
+                <table className='table table-striped text-center'>
+                  <thead>
+                    <tr>
+                      <th scope='col'>humanId</th>
+                      <th scope='col'>Имя</th>
+                      <th scope='col'>Фамилия</th>
+                      <th scope='col'>Фото</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.masters.map((master, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{master.humanId}</td>
+                          <td>{master.firstName}</td>
+                          <td>{master.lastName}</td>
+                          <td>
+                            {master.bigPic &&
+                              master.bigPic.guid &&
+                              master.bigPic.ext && (
+                                <img
+                                  alt={master.lastName}
+                                  width={90}
+                                  height={90}
+                                  src={`${uploadDir}${master.bigPic.guid}${master.bigPic.ext}`}
+                                />
+                              )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }
 
-const mapStateToProps = ({ masters }) => ({
-  masters: masters.list,
-  mastersLoadingInProgress: masters.mastersLoadingInProgress,
-  mastersLoadingError: masters.mastersLoadingError,
-  mastersLoadedAt: masters.mastersLoadedAt
-});
-
-const mapDispatchToProps = dispatch => ({
-  mastersActions: bindActionCreators({ ...mastersActions }, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(List);
+export default MastersControl;

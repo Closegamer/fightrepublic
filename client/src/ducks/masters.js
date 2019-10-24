@@ -25,9 +25,9 @@ const loadMastersStart = () => ({
   type: LOADING_MASTERS_START
 });
 
-const loadMastersSucceed = master => ({
+const loadMastersSucceed = masters => ({
   type: LOADING_MASTERS_SUCCEED,
-  master,
+  masters,
   fetchedAt: Date.now()
 });
 
@@ -116,9 +116,9 @@ export const loadMasters = file => (dispatch, getState) => {
   console.log('masters duck loadMasters');
   dispatch(loadMastersStart());
   return axios
-    .post('/api/masters')
+    .post('/api/masters/list')
     .then(response => {
-      dispatch(loadMastersSucceed());
+      dispatch(loadMastersSucceed(response.data.masters));
       return response.data.masters;
     })
     .catch(error => {
@@ -153,7 +153,7 @@ export const deleteMaster = humanId => (dispatch, getState) => {
 const initialState = Immutable({
   mastersLoadingInProgress: false,
   mastersLoadingError: '',
-  masters: []
+  list: []
 });
 
 // Reducer
@@ -165,7 +165,8 @@ export default function reducer(state = initialState, action = {}) {
       });
     case LOADING_MASTERS_SUCCEED:
       return Immutable.merge(state, {
-        mastersLoadingInProgress: false
+        mastersLoadingInProgress: false,
+        list: action.masters
       });
     case LOADING_MASTERS_FAILED:
       return Immutable.merge(state, {
