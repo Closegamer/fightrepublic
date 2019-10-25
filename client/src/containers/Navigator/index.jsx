@@ -163,6 +163,12 @@ export class Navigator extends Component {
             )}
           </MDBNavbarNav>
           <MDBNavbarNav right style={specialCaseNavbarStyles}>
+            <MDBNavItem active={this.props.location.pathname.includes('/info')}>
+              <MDBNavLink to='/info'>
+                <MDBIcon icon='info-circle' className='d-inline-inline' />{' '}
+                <div className='d-none d-md-inline'>Инфо</div>
+              </MDBNavLink>
+            </MDBNavItem>
             <MDBNavItem
               active={this.props.location.pathname.includes('/contacts')}
             >
