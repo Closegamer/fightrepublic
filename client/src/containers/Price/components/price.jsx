@@ -30,7 +30,11 @@ function PriceInfo(props) {
                   </MDBTableHead>
                   <MDBTableBody>
                     <tr className='text-center'>
-                      <td>Безлимитный абонемент</td>
+                      <td>
+                        Безлимитный абонемент
+                        <br />
+                        (6 раз в неделю)
+                      </td>
                       <td>
                         72000
                         <br />

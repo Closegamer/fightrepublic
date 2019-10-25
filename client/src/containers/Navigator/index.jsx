@@ -7,6 +7,7 @@ import { toggleBalanceForm } from '../../ducks/balance';
 import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import logo from '../../img/Logotip_FR-07.png';
+import navBg from '../../img/club10.jpeg';
 import WaveComponent from '../../components/WaveComponent';
 import './styles.css';
 
@@ -52,9 +53,9 @@ export class Navigator extends Component {
     return (
       <div className='mdb-skin'>
         <MDBSideNav
-          // logo={logo}
+          logo={logo}
           triggerOpening={this.state.leftMenuIsOpen}
-          // bg='https://mdbootstrap.com/img/Photos/Others/sidenav4.jpg'
+          bg={navBg}
           mask='strong'
           hidden
           className={classes.root}
@@ -83,44 +84,35 @@ export class Navigator extends Component {
               </li>
             </ul>
           </li>
-          <MDBInput
-            type='text'
-            default='Search'
-            style={{
-              color: '#fff',
-              padding: '0 10px 8px 30px',
-              boxSizing: 'border-box'
-            }}
-          />
           <MDBSideNavNav>
             <MDBSideNavCat
-              name='Submit blog'
+              name='Информация'
               id='submit-blog-cat'
-              icon='chevron-right'
+              icon='question-circle'
             >
-              <MDBSideNavItem>Submit listing</MDBSideNavItem>
-              <MDBSideNavItem>Registration form</MDBSideNavItem>
+              <MDBSideNavItem>Цены</MDBSideNavItem>
+              <MDBSideNavItem>Единоборства</MDBSideNavItem>
             </MDBSideNavCat>
             <MDBSideNavCat
               iconRegular
-              name='Instruction'
+              name='Расписание'
               id='instruction-cat'
-              icon='hand-pointer'
+              icon='calendar-alt'
             >
-              <MDBSideNavItem>For bloggers</MDBSideNavItem>
-              <MDBSideNavItem>For authors</MDBSideNavItem>
+              <MDBSideNavItem>Понедельник</MDBSideNavItem>
+              <MDBSideNavItem>Вторник</MDBSideNavItem>
+              <MDBSideNavItem>Среда</MDBSideNavItem>
+              <MDBSideNavItem>Четверг</MDBSideNavItem>
+              <MDBSideNavItem>Пятница</MDBSideNavItem>
+              <MDBSideNavItem>Суббота</MDBSideNavItem>
+              <MDBSideNavItem>Воскресенье</MDBSideNavItem>
             </MDBSideNavCat>
-            <MDBSideNavCat name='About' id='about-cat' icon='eye'>
-              <MDBSideNavItem>Instruction</MDBSideNavItem>
-              <MDBSideNavItem>Monthly meetings</MDBSideNavItem>
+            <MDBSideNavCat name='О клубе' id='about-cat' icon='crown'>
+              <MDBSideNavItem>Тренеры</MDBSideNavItem>
+              <MDBSideNavItem>Фотографии</MDBSideNavItem>
             </MDBSideNavCat>
-            <MDBSideNavCat
-              name='Contact me'
-              id='contact-me-cat'
-              icon='envelope'
-            >
-              <MDBSideNavItem>FAQ</MDBSideNavItem>
-              <MDBSideNavItem>Write a message</MDBSideNavItem>
+            <MDBSideNavCat name='Контакты' id='contact-me-cat' icon='bullhorn'>
+              <MDBSideNavItem>Обратная связь</MDBSideNavItem>
             </MDBSideNavCat>
           </MDBSideNavNav>
         </MDBSideNav>
