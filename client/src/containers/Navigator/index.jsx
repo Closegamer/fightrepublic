@@ -138,7 +138,7 @@ export class Navigator extends Component {
           </div>
 
           <MDBNavbarNav left>
-            {/* <MDBNavItem>
+            <MDBNavItem>
               <div
                 onClick={this.toggleLeftMenu}
                 key='sideNavToggleA'
@@ -150,7 +150,7 @@ export class Navigator extends Component {
               >
                 <MDBIcon icon='bars' color='white' />
               </div>
-            </MDBNavItem> */}
+            </MDBNavItem>
 
             {isLoggedIn && (
               <React.Fragment>
@@ -167,6 +167,14 @@ export class Navigator extends Component {
               <MDBNavLink to='/info'>
                 <MDBIcon icon='info-circle' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Инфо</div>
+              </MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem
+              active={this.props.location.pathname.includes('/price')}
+            >
+              <MDBNavLink to='/price'>
+                <MDBIcon icon='money-bill' className='d-inline-inline' />{' '}
+                <div className='d-none d-md-inline'>Цены</div>
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem
