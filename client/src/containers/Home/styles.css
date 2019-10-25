@@ -163,3 +163,17 @@
 .btn-wide {
   width: 90%;
 }
+
+.md-form label {
+  color: grey;
+}
+
+.form-control {
+  color: black;
+}
+
+.md-form textarea.md-textarea {
+  padding: 1.5rem 0;
+  resize: both;
+  min-height: 150px;
+}

@@ -55,7 +55,7 @@ let RegisterForm = props => {
             label={
               <label className='form-check-label white-text' htmlFor='agree'>
                 Принимаю{' '}
-                <a href='#!' className='green-text font-weight-bold'>
+                <a href='#!' className='red-text font-weight-bold'>
                   Пользовательское соглашение
                 </a>
               </label>
@@ -69,8 +69,7 @@ let RegisterForm = props => {
           <MDBRow className='d-flex align-items-center mb-4'>
             <div className='text-center mb-3 col-md-12'>
               <MDBBtn
-                color='success'
-                className='btn-block z-depth-1'
+                className='btn-block z-depth-1 loginBtn'
                 type='submit'
                 disabled={!agree || submitting}
               >
@@ -97,7 +96,7 @@ let RegisterForm = props => {
               Уже зарегистрировались?
               <span
                 className={classNames(
-                  'green-text ml-1 font-weight-bold',
+                  'red-text ml-1 font-weight-bold',
                   classes.link
                 )}
                 onClick={e => toggleFormType('login')}

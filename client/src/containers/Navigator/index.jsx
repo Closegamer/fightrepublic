@@ -149,12 +149,30 @@ export class Navigator extends Component {
           </MDBNavbarNav>
           <MDBNavbarNav right style={specialCaseNavbarStyles}>
             <MDBNavItem
+              active={this.props.location.pathname.includes('/masters')}
+              className='d-none d-sm-block'
+            >
+              <MDBNavLink to='/masters'>
+                <MDBIcon icon='male' className='d-inline-inline' />{' '}
+                <div className='d-none d-md-inline'>Тренеры</div>
+              </MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem
               active={this.props.location.pathname.includes('/info')}
               className='d-none d-sm-block'
             >
               <MDBNavLink to='/info'>
                 <MDBIcon icon='info-circle' className='d-inline-inline' />{' '}
-                <div className='d-none d-md-inline'>Инфо</div>
+                <div className='d-none d-md-inline'>Единоборства</div>
+              </MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem
+              active={this.props.location.pathname.includes('/photos')}
+              className='d-none d-sm-block'
+            >
+              <MDBNavLink to='/photos'>
+                <MDBIcon icon='camera' className='d-inline-inline' />{' '}
+                <div className='d-none d-md-inline'>Галерея</div>
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem

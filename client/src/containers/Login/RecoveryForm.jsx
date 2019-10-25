@@ -30,11 +30,7 @@ let RecoveryForm = props => {
           />
           <MDBRow className='d-flex align-items-center mb-4'>
             <div className='text-center mb-3 col-md-12'>
-              <MDBBtn
-                color='success'
-                className='btn-block z-depth-1'
-                type='submit'
-              >
+              <MDBBtn className='btn-block z-depth-1 loginBtn' type='submit'>
                 Восстановить
               </MDBBtn>
             </div>
@@ -44,7 +40,7 @@ let RecoveryForm = props => {
               Вспомнили пароль?
               <span
                 className={classNames(
-                  'green-text ml-1 font-weight-bold',
+                  'red-text ml-1 font-weight-bold',
                   classes.link
                 )}
                 onClick={() => toggleFormType('login')}

@@ -74,6 +74,11 @@
   transform-origin: 100% 100%;
 }
 
-.green-text {
-  color: #00e25b !important;
+.red-text {
+  color: #cc0000 !important;
+}
+
+.loginBtn {
+  background-color: #cc0000 !important;
+  color: white !important;
 }
