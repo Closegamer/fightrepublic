@@ -3,6 +3,13 @@
   background-color: #00695c !important;
 }
 
+.dayBtn {
+  padding: 5px !important;
+  min-width: 100px !important;
+  font-size: 10px;
+  background-color: #00695c !important;
+}
+
 .adminButtons-cont {
   margin-top: 30px !important;
 }

@@ -7,6 +7,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Lessons from './Lessons';
 import Users from './Users';
 import Masters from './Masters';
+import Schedule from './Schedule';
 
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBNavLink } from 'mdbreact';
 import './styles.css';
@@ -44,6 +45,9 @@ export class Admin extends Component {
                 <MDBNavLink to={`${match.path}/lessons`}>
                   <MDBBtn className='adminBtn'>Занятия</MDBBtn>
                 </MDBNavLink>
+                <MDBNavLink to={`${match.path}/schedule`}>
+                  <MDBBtn className='adminBtn'>Расписание</MDBBtn>
+                </MDBNavLink>
               </MDBCol>
               <MDBCol xs='12' sm='9' md='9' lg='9' xl='9'>
                 <Switch>
@@ -51,6 +55,7 @@ export class Admin extends Component {
                   <Route path={`${match.path}/lessons`} component={Lessons} />
                   <Route path={`${match.path}/users`} component={Users} />
                   <Route path={`${match.path}/masters`} component={Masters} />
+                  <Route path={`${match.path}/schedule`} component={Schedule} />
                   <Route component={Lost} />
                 </Switch>
               </MDBCol>
