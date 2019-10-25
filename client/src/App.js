@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import socketIOClient from 'socket.io-client';
+// import socketIOClient from 'socket.io-client';
 import Navigator from './containers/Navigator';
 import Footer from './containers/Footer';
 import LoginForm from './containers/Login';
@@ -21,29 +21,29 @@ setInterceptors();
 export class App extends Component {
   constructor() {
     super();
-    this.state = {
-      endpointHTTP: config.socketEndpointHTTP,
-      endpointHTTPS: config.socketEndpointHTTPS
-    };
+    // this.state = {
+    //   endpointHTTP: config.socketEndpointHTTP,
+    //   endpointHTTPS: config.socketEndpointHTTPS
+    // };
   }
 
-  setAlert = msg => {
-    const endpoint =
-      window.location.protocol === 'https:'
-        ? this.state.endpointHTTPS
-        : this.state.endpointHTTP;
-    const socket = socketIOClient(endpoint);
-    socket.emit('alert', msg);
-  };
+  // setAlert = msg => {
+  //   const endpoint =
+  //     window.location.protocol === 'https:'
+  //       ? this.state.endpointHTTPS
+  //       : this.state.endpointHTTP;
+  //   const socket = socketIOClient(endpoint);
+  //   socket.emit('alert', msg);
+  // };
 
   componentDidMount() {
     store.dispatch(loadUser());
 
-    const endpoint =
-      window.location.protocol === 'https:'
-        ? this.state.endpointHTTPS
-        : this.state.endpointHTTP;
-    const socket = socketIOClient(endpoint);
+    // const endpoint =
+    //   window.location.protocol === 'https:'
+    //     ? this.state.endpointHTTPS
+    //     : this.state.endpointHTTP;
+    // const socket = socketIOClient(endpoint);
 
     // setInterval(this.send(), 1000);
 
