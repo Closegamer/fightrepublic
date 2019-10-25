@@ -35,41 +35,37 @@ export class UsersControl extends Component {
 
   render() {
     return (
-      <MDBContainer>
-        <MDBRow>
-          <MDBCol>
-            {!this.state.users[0] ? (
-              <div>Пользователей не найдено</div>
-            ) : (
-              <div className='monitor-cont'>
-                <h4>Все пользователи</h4>
-                <table className='table table-striped text-center'>
-                  <thead>
-                    <tr>
-                      <th scope='col'>Nick</th>
-                      <th scope='col'>Email</th>
-                      <th scope='col'>Role</th>
-                      <th scope='col'>Date</th>
+      <div>
+        {!this.state.users[0] ? (
+          <div>Пользователей не найдено</div>
+        ) : (
+          <div className='monitor-cont'>
+            <h4>Все пользователи</h4>
+            <table className='table table-striped text-center'>
+              <thead>
+                <tr>
+                  <th scope='col'>Nick</th>
+                  <th scope='col'>Email</th>
+                  <th scope='col'>Role</th>
+                  <th scope='col'>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.users.map((user, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{user.nick}</td>
+                      <td>{user.email}</td>
+                      <td>{user.role}</td>
+                      <td>{user.date}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.users.map((user, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{user.nick}</td>
-                          <td>{user.email}</td>
-                          <td>{user.role}</td>
-                          <td>{user.date}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     );
   }
 }

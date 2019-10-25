@@ -6,17 +6,20 @@ const LessonsSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  lesson: {
+  sport: {
     type: String,
     required: true
   },
-  master: {
-    type: String,
-    required: true
-  },
-  age: {
-    type: String,
-    required: true
+  bigPic: {
+    guid: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    ext: {
+      type: String,
+      required: true
+    }
   },
   date: {
     type: Date,

@@ -10,7 +10,6 @@ const path = require('path');
 // @desc     Lessons list
 // @access   Public
 router.post('/list', async (req, res) => {
-  console.log('api masters list');
   try {
     const masters = await Masters.find();
 
@@ -32,8 +31,6 @@ router.post('/list', async (req, res) => {
 // @desc     Create new lesson
 // @access   Public
 router.post('/create', async (req, res) => {
-  console.log('api admin masters create');
-  console.log(req.body);
   let updateFlag = false;
 
   if (!!req.body.humanId) {
@@ -42,7 +39,6 @@ router.post('/create', async (req, res) => {
 
   let { humanId, firstName, lastName, bigPic } = req.body;
 
-  console.log('req.body: ', req.body);
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }

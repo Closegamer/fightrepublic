@@ -35,14 +35,14 @@ export class Admin extends Component {
                 xl='3'
                 className='rightBordered'
               >
-                <MDBNavLink to={`${match.path}/lessons`}>
-                  <MDBBtn className='adminBtn'>Занятия</MDBBtn>
-                </MDBNavLink>
                 <MDBNavLink to={`${match.path}/users`}>
                   <MDBBtn className='adminBtn'>Пользователи</MDBBtn>
                 </MDBNavLink>
                 <MDBNavLink to={`${match.path}/masters`}>
                   <MDBBtn className='adminBtn'>Тренеры</MDBBtn>
+                </MDBNavLink>
+                <MDBNavLink to={`${match.path}/lessons`}>
+                  <MDBBtn className='adminBtn'>Занятия</MDBBtn>
                 </MDBNavLink>
               </MDBCol>
               <MDBCol xs='12' sm='9' md='9' lg='9' xl='9'>

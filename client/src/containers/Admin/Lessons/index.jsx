@@ -8,7 +8,7 @@ function Lessons({ match }) {
   return (
     <React.Fragment>
       <div className='rightBordered'>
-        <h3>Управление расписанием</h3>
+        <h3>Управление занятиями</h3>
         <br />
         <div
           className='btn-group btn-group-lg'

@@ -12,7 +12,7 @@ export class Edit extends Component {
   static propTypes = {};
 
   componentDidMount() {
-    const { actions, match } = this.props;
+    const { lessonsActions, match } = this.props;
 
     const humanId = match.params.humanId;
     if (humanId) {

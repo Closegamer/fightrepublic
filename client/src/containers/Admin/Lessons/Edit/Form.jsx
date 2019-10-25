@@ -8,78 +8,68 @@ import Select from 'react-select';
 import { optionsMaster, optionsRoom, optionsAge } from './selectOptions';
 import './styles.css';
 
+export const ReduxFormSelect = props => {
+  const { input, options } = props;
+
+  return (
+    <Select
+      {...input}
+      onChange={value => input.onChange(value)}
+      onBlur={() => input.onBlur(input.value)}
+      options={options}
+    />
+  );
+};
+
 let Form = props => {
   const { handleSubmit, loadedLesson } = props;
   const animatedComponents = makeAnimated();
-  const master = 'какой-то тренер';
-  const age = 'возраст не определен';
 
-  if (loadedLesson && loadedLesson.master) {
-    master = loadedLesson.master;
+  if (loadedLesson && loadedLesson.lesson) {
+    const lesson = loadedLesson.lesson;
   }
-  if (loadedLesson && loadedLesson.age) {
-    age = loadedLesson.age;
-  }
+
   return (
     <form onSubmit={handleSubmit}>
-      <p className='selectLabel'>Id занятия (auto)</p>
       {loadedLesson && (
-        <input
-          className='profileInput'
-          type='text'
+        <Field
           name='humanId'
+          component={TextField}
           value={loadedLesson.humanId}
-          onChange={handleSubmit}
-          readOnly
+          type='text'
+          label='Id занятия (auto)'
+          group
         />
       )}
       {!loadedLesson && (
-        <input
-          className='profileInput'
-          type='text'
+        <Field
           name='humanId'
-          onChange={handleSubmit}
-          readOnly
+          component={TextField}
+          type='text'
+          label='Id занятия (auto)'
+          group
         />
       )}
-      <p className='selectLabel'>Название</p>
       {loadedLesson && (
-        <input
-          className='profileInput'
-          type='text'
-          name='lesson'
+        <Field
+          name='sport'
+          component={TextField}
           value={loadedLesson.lesson}
-          onChange={handleSubmit}
+          type='text'
+          label='Название'
+          group
         />
       )}
       {!loadedLesson && (
-        <input
-          className='profileInput'
+        <Field
+          name='sport'
+          component={TextField}
           type='text'
-          name='lesson'
-          onChange={handleSubmit}
+          label='Название'
+          group
         />
       )}
-      <p className='selectLabel'>Тренер</p>
-      <div className='selectContainer'>
-        <Select
-          options={optionsMaster}
-          defaultValue={master}
-          components={animatedComponents}
-          isMulti
-          name='master'
-        />
-      </div>
-      <p className='selectLabel'>Возраст</p>
-      <div className='selectContainer'>
-        <Select
-          options={optionsAge}
-          defaultValue={age}
-          components={animatedComponents}
-          isMulti
-          name='age'
-        />
-      </div>
+      <Field name='bigPic' component={FileField} />
       <MDBBtn type='submit' className='adminBtn mt15'>
         Создать
       </MDBBtn>

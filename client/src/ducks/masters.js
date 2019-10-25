@@ -89,10 +89,8 @@ const deleteMasterFailed = error => ({
 
 export const createMaster = ({ bigPic, ...values }) => (dispatch, getState) => {
   dispatch(createMasterStart());
-  console.log('values: ', values);
   let formData = new FormData();
 
-  console.log('formData: ', formData);
   for (var key in values) {
     formData.append(key, values[key]);
   }
@@ -113,7 +111,6 @@ export const createMaster = ({ bigPic, ...values }) => (dispatch, getState) => {
 };
 
 export const loadMasters = file => (dispatch, getState) => {
-  console.log('masters duck loadMasters');
   dispatch(loadMastersStart());
   return axios
     .post('/api/masters/list')
@@ -175,15 +172,13 @@ export default function reducer(state = initialState, action = {}) {
       });
     case CREATE_MASTER_START:
       return Immutable.merge(state, {
-        masterCreationInProgress: true,
-        masterCreationError: ''
+        masterCreationInProgress: true
       });
 
     case CREATE_MASTER_SUCCEED:
       return Immutable.merge(state, {
         masterCreatedAt: action.fetchedAt,
-        masterCreationInProgress: false,
-        masterCreationError: ''
+        masterCreationInProgress: false
       });
 
     case CREATE_MASTER_FAILED:

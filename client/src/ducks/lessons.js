@@ -21,6 +21,10 @@ const CHANGING_STATUS_OF_LESSON_START = `${prefix}/CHANGING_STATUS_OF_LESSON_STA
 const CHANGING_STATUS_OF_LESSON_SUCCEED = `${prefix}/CHANGING_STATUS_OF_LESSON_SUCCEED`;
 const CHANGING_STATUS_OF_LESSON_FAILED = `${prefix}/CHANGING_STATUS_OF_LESSON_FAILED`;
 
+const CREATE_LESSON_START = `${prefix}/CREATE_LESSON_START`;
+const CREATE_LESSON_SUCCEED = `${prefix}/CREATE_LESSON_SUCCEED`;
+const CREATE_LESSON_FAILED = `${prefix}/CREATE_LESSON_FAILED`;
+
 const loadLessonsStart = () => ({
   type: LOADING_LESSONS_START
 });
@@ -33,6 +37,23 @@ const loadLessonsSucceed = Lesson => ({
 
 const loadLessonsFailed = error => ({
   type: LOADING_LESSONS_FAILED,
+  error
+});
+
+// creating single lesson
+
+const createLessonStart = () => ({
+  type: CREATE_LESSON_START
+});
+
+const createLessonSucceed = lesson => ({
+  type: CREATE_LESSON_SUCCEED,
+  lesson,
+  fetchedAt: Date.now()
+});
+
+const createLessonFailed = error => ({
+  type: CREATE_LESSON_FAILED,
   error
 });
 
@@ -69,6 +90,30 @@ const deleteLessonFailed = error => ({
   type: DELETING_LESSON_FAILED,
   error
 });
+
+export const createLesson = ({ bigPic, ...values }) => (dispatch, getState) => {
+  dispatch(createLessonStart());
+  let formData = new FormData();
+
+  for (var key in values) {
+    formData.append(key, values[key]);
+  }
+  if (bigPic) {
+    for (var i = 0; i < bigPic.length; i++) {
+      formData.append('bigPic', bigPic[i], bigPic[i].name);
+    }
+  }
+
+  return axios
+    .post(`/api/lessons/create`, formData)
+    .then(response => {
+      dispatch(createLessonSucceed(response.data.lesson));
+      return response.data;
+    })
+    .catch(error => {
+      dispatch(createLessonFailed(error.message));
+    });
+};
 
 // Changing status of single lesson
 
@@ -137,6 +182,8 @@ export const lessonStatusChange = humanId => (dispatch, getState) => {
 };
 
 const initialState = Immutable({
+  lessonsCreatingInProgress: false,
+  lessonsCreatingError: '',
   lessonsLoadingInProgress: false,
   lessonsLoadingError: ''
 });
@@ -144,6 +191,19 @@ const initialState = Immutable({
 // Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case CREATE_LESSON_START:
+      return Immutable.merge(state, {
+        lessonsCreatingInProgress: true
+      });
+    case CREATE_LESSON_SUCCEED:
+      return Immutable.merge(state, {
+        lessonsCreatingInProgress: false
+      });
+    case CREATE_LESSON_FAILED:
+      return Immutable.merge(state, {
+        lessonsCreatingInProgress: false,
+        lessonsCreatingError: action.error
+      });
     case LOADING_LESSONS_START:
       return Immutable.merge(state, {
         lessonsLoadingInProgress: true
