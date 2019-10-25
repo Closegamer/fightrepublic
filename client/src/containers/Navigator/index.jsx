@@ -90,8 +90,8 @@ export class Navigator extends Component {
               id='submit-blog-cat'
               icon='question-circle'
             >
-              <MDBSideNavItem>Цены</MDBSideNavItem>
-              <MDBSideNavItem>Единоборства</MDBSideNavItem>
+              <MDBSideNavItem href='/price'>Цены</MDBSideNavItem>
+              <MDBSideNavItem href='/info'>Единоборства</MDBSideNavItem>
             </MDBSideNavCat>
             <MDBSideNavCat
               iconRegular
@@ -99,20 +99,20 @@ export class Navigator extends Component {
               id='instruction-cat'
               icon='calendar-alt'
             >
-              <MDBSideNavItem>Понедельник</MDBSideNavItem>
-              <MDBSideNavItem>Вторник</MDBSideNavItem>
-              <MDBSideNavItem>Среда</MDBSideNavItem>
-              <MDBSideNavItem>Четверг</MDBSideNavItem>
-              <MDBSideNavItem>Пятница</MDBSideNavItem>
-              <MDBSideNavItem>Суббота</MDBSideNavItem>
-              <MDBSideNavItem>Воскресенье</MDBSideNavItem>
+              <MDBSideNavItem href='/schedule/mon'>Понедельник</MDBSideNavItem>
+              <MDBSideNavItem href='/schedule/tue'>Вторник</MDBSideNavItem>
+              <MDBSideNavItem href='/schedule/wed'>Среда</MDBSideNavItem>
+              <MDBSideNavItem href='/schedule/thu'>Четверг</MDBSideNavItem>
+              <MDBSideNavItem href='/schedule/fri'>Пятница</MDBSideNavItem>
+              <MDBSideNavItem href='/schedule/sat'>Суббота</MDBSideNavItem>
+              <MDBSideNavItem href='/schedule/sun'>Воскресенье</MDBSideNavItem>
             </MDBSideNavCat>
             <MDBSideNavCat name='О клубе' id='about-cat' icon='crown'>
-              <MDBSideNavItem>Тренеры</MDBSideNavItem>
-              <MDBSideNavItem>Фотографии</MDBSideNavItem>
+              <MDBSideNavItem href='/masters'>Тренеры</MDBSideNavItem>
+              <MDBSideNavItem href='/photos'>Фотографии</MDBSideNavItem>
             </MDBSideNavCat>
             <MDBSideNavCat name='Контакты' id='contact-me-cat' icon='bullhorn'>
-              <MDBSideNavItem>Обратная связь</MDBSideNavItem>
+              <MDBSideNavItem href='/contacts'>Обратная связь</MDBSideNavItem>
             </MDBSideNavCat>
           </MDBSideNavNav>
         </MDBSideNav>
@@ -122,7 +122,6 @@ export class Navigator extends Component {
               <img src={logo} className='img-fluid logo' alt='FR-logo' />
             </MDBNavbarBrand>
           </div>
-
           <MDBNavbarNav left>
             <MDBNavItem>
               <div
@@ -149,7 +148,10 @@ export class Navigator extends Component {
             )}
           </MDBNavbarNav>
           <MDBNavbarNav right style={specialCaseNavbarStyles}>
-            <MDBNavItem active={this.props.location.pathname.includes('/info')}>
+            <MDBNavItem
+              active={this.props.location.pathname.includes('/info')}
+              className='d-none d-sm-block'
+            >
               <MDBNavLink to='/info'>
                 <MDBIcon icon='info-circle' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Инфо</div>
@@ -157,6 +159,7 @@ export class Navigator extends Component {
             </MDBNavItem>
             <MDBNavItem
               active={this.props.location.pathname.includes('/price')}
+              className='d-none d-sm-block'
             >
               <MDBNavLink to='/price'>
                 <MDBIcon icon='money-bill' className='d-inline-inline' />{' '}
@@ -165,6 +168,7 @@ export class Navigator extends Component {
             </MDBNavItem>
             <MDBNavItem
               active={this.props.location.pathname.includes('/contacts')}
+              className='d-none d-sm-block'
             >
               <MDBNavLink to='/contacts'>
                 <MDBIcon icon='comments' className='d-inline-inline' />{' '}
