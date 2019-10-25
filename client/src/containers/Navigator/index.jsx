@@ -7,7 +7,7 @@ import { toggleBalanceForm } from '../../ducks/balance';
 import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import logo from '../../img/Logotip_FR-07.png';
-import navBg from '../../img/club10.jpeg';
+import navBg from '../../img/club/club10.jpeg';
 import WaveComponent from '../../components/WaveComponent';
 import './styles.css';
 

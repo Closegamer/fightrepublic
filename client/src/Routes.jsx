@@ -11,6 +11,11 @@ const Recovery = lazy(() => import('./containers/Recovery'));
 const Info = lazy(() => import('./containers/Info'));
 const Price = lazy(() => import('./containers/Price'));
 const Photos = lazy(() => import('./containers/Photos'));
+const Masters = lazy(() => import('./containers/Masters'));
+const Master1 = lazy(() => import('./containers/Masters/components/Master1'));
+const Master2 = lazy(() => import('./containers/Masters/components/Master2'));
+const Master3 = lazy(() => import('./containers/Masters/components/Master3'));
+const Master4 = lazy(() => import('./containers/Masters/components/Master4'));
 
 function Routes(auth) {
   return (
@@ -22,6 +27,11 @@ function Routes(auth) {
         <Route exact path='/info/' component={Info} />
         <Route exact path='/price/' component={Price} />
         <Route exact path='/photos/' component={Photos} />
+        <Route exact path='/masters/' component={Masters} />
+        <Route exact path='/masters/Master1' component={Master1} />
+        <Route exact path='/masters/Master2' component={Master2} />
+        <Route exact path='/masters/Master3' component={Master3} />
+        <Route exact path='/masters/Master4' component={Master4} />
         <Route exact path='/recovery/:token' component={Recovery} />
         <PrivateRoute
           user={auth.user}

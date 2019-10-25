@@ -2,15 +2,15 @@ import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import Lightbox from 'react-image-lightbox';
 import './Lightbox.css';
-import club1 from '../../img/club1.jpeg';
-import club3 from '../../img/club3.jpeg';
-import club4 from '../../img/club4.jpeg';
-import club5 from '../../img/club5.jpeg';
-import club6 from '../../img/club6.jpeg';
-import club7 from '../../img/club7.jpeg';
-import club8 from '../../img/club8.jpeg';
-import club9 from '../../img/club9.jpeg';
-import club10 from '../../img/club10.jpeg';
+import club1 from '../../img/club/club1.jpeg';
+import club3 from '../../img/club/club3.jpeg';
+import club4 from '../../img/club/club4.jpeg';
+import club5 from '../../img/club/club5.jpeg';
+import club6 from '../../img/club/club6.jpeg';
+import club7 from '../../img/club/club7.jpeg';
+import club8 from '../../img/club/club8.jpeg';
+import club9 from '../../img/club/club9.jpeg';
+import club10 from '../../img/club/club10.jpeg';
 
 class Photos extends React.Component {
   state = {
