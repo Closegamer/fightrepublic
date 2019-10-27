@@ -4,10 +4,10 @@ import axios from 'axios';
 
 const columns = [
   'Время',
-  'Ударная зона Тренер',
-  'Ударная зона Занятие',
-  'Зона татами Тренер',
-  'Зона татами Занятие'
+  'Ударная зона - Тренер',
+  'Ударная зона - Занятие',
+  'Зона татами - Тренер',
+  'Зона татами - Занятие'
 ];
 
 class DayTab extends Component {
@@ -85,7 +85,7 @@ class DayTab extends Component {
           striped
           bordered
         />
-        <MDBBtn onClick={this.saveTable}>Save</MDBBtn>
+        <MDBBtn onClick={this.saveTable} className='adminBtn'>Сохранить</MDBBtn>
       </>
     );
   }

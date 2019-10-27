@@ -9,6 +9,7 @@ import {
   MDBIcon
 } from 'mdbreact';
 import DayTab from './DayTab';
+import '../styles.css';
 
 class TabsJustified extends Component {
   state = {
@@ -26,8 +27,8 @@ class TabsJustified extends Component {
   render() {
     // const columns = ['Время', 'Ударная зона', 'Зона татами'];
     return (
-      <MDBContainer>
-        <MDBNav tabs className='nav-justified' color='indigo'>
+      <div>
+        <MDBNav tabs className='nav-justified' color='black'>
           <MDBNavItem>
             <MDBNavLink
               to='#'
@@ -35,7 +36,7 @@ class TabsJustified extends Component {
               onClick={this.toggleJustified('1')}
               role='tab'
             >
-              <MDBIcon icon='user' /> Понедельник
+              <MDBIcon icon='pencil-alt' /> Понедельник
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
@@ -45,7 +46,7 @@ class TabsJustified extends Component {
               onClick={this.toggleJustified('2')}
               role='tab'
             >
-              <MDBIcon icon='heart' /> Вторник
+              <MDBIcon icon='pencil-alt' /> Вторник
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
@@ -55,7 +56,7 @@ class TabsJustified extends Component {
               onClick={this.toggleJustified('3')}
               role='tab'
             >
-              <MDBIcon icon='envelope' /> Среда
+              <MDBIcon icon='pencil-alt' /> Среда
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
@@ -65,7 +66,7 @@ class TabsJustified extends Component {
               onClick={this.toggleJustified('4')}
               role='tab'
             >
-              <MDBIcon icon='envelope' /> Четверг
+              <MDBIcon icon='pencil-alt' /> Четверг
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
@@ -75,7 +76,7 @@ class TabsJustified extends Component {
               onClick={this.toggleJustified('5')}
               role='tab'
             >
-              <MDBIcon icon='envelope' /> Пятница
+              <MDBIcon icon='pencil-alt' /> Пятница
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
@@ -85,7 +86,7 @@ class TabsJustified extends Component {
               onClick={this.toggleJustified('6')}
               role='tab'
             >
-              <MDBIcon icon='envelope' /> Суббота
+              <MDBIcon icon='pencil-alt' /> Суббота
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
@@ -95,7 +96,7 @@ class TabsJustified extends Component {
               onClick={this.toggleJustified('7')}
               role='tab'
             >
-              <MDBIcon icon='envelope' /> Воскресенье
+              <MDBIcon icon='pencil-alt' /> Воскресенье
             </MDBNavLink>
           </MDBNavItem>
         </MDBNav>
@@ -104,28 +105,35 @@ class TabsJustified extends Component {
           activeItem={this.state.activeItemJustified}
         >
           <MDBTabPane tabId='1' role='tabpanel'>
+            <h5 className='mt-30'>Понедельник</h5>
             <DayTab day={'monday'} />
           </MDBTabPane>
           <MDBTabPane tabId='2' role='tabpanel'>
+          <h5 className='mt-30'>Вторник</h5>
             <DayTab day={'tuesday'} />
           </MDBTabPane>
           <MDBTabPane tabId='3' role='tabpanel'>
+            <h5 className='mt-30'>Среда</h5>
             <DayTab day={'wednesday'} />
           </MDBTabPane>
           <MDBTabPane tabId='4' role='tabpanel'>
+            <h5 className='mt-30'>Четверг</h5>
             <DayTab day={'thursday'} />
           </MDBTabPane>
           <MDBTabPane tabId='5' role='tabpanel'>
+            <h5 className='mt-30'>Пятница</h5>
             <DayTab day={'friday'} />
           </MDBTabPane>
           <MDBTabPane tabId='6' role='tabpanel'>
+            <h5 className='mt-30'>Суббота</h5>
             <DayTab day={'saturday'} />
           </MDBTabPane>
           <MDBTabPane tabId='7' role='tabpanel'>
+            <h5 className='mt-30'>Воскресенье</h5>
             <DayTab day={'sunday'} />
           </MDBTabPane>
         </MDBTabContent>
-      </MDBContainer>
+      </div>
     );
   }
 }
