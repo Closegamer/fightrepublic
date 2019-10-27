@@ -20,34 +20,8 @@ export class ScheduleControl extends Component {
 
   table = React.createRef();
 
-  componentDidMount() {
-    // return axios
-    //   .post(`/api/days/load`)
-    //   .then(response => {
-    //     if (response.data.success) {
-    //       this.setState({
-    //         isLoading: false,
-    //         isSaving: false,
-    //         error: '',
-    //         lines: response.data.result
-    //       });
-    //     } else {
-    //       this.setState({ isLoading: false, error: response.data.error });
-    //     }
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //     this.setState({
-    //       isLoading: false,
-    //       error: error.response.data.error
-    //     });
-    //   });
-  }
-
   saveTable = () => {
     const data = this.table.current.state.data;
-
-    console.log(data);
     return axios
       .post(`/api/days/save`, data)
       .then(response => {
@@ -75,7 +49,6 @@ export class ScheduleControl extends Component {
     return (
       <div>
         <ScheduleInTabs />
-        {/* <MDBBtn onClick={this.saveTable}>Save</MDBBtn> */}
       </div>
     );
   }

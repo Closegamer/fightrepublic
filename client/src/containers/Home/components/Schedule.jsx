@@ -19,7 +19,7 @@ toggleJustified = tab => e => {
 render() {
     return (
       <MDBContainer>
-        <MDBNav tabs className="nav-justified" color='indigo'>
+        <MDBNav tabs className="nav-justified" color='black'>
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItemJustified === "1"} onClick={this.toggleJustified("1")} role="tab" >
               <MDBIcon icon="clipboard-list" /> Понедельник

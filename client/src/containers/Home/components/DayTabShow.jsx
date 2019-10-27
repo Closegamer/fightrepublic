@@ -22,27 +22,26 @@ class DayTabShow extends Component {
       .then(response => {
         if (response.data.success) {
           this.rows = response.data.rows || [['', '', '', '', '']];
-          const allRows = this.rows;
+        //   const allRows = this.rows;
           this.setState({
             isLoading: false,
             isSaving: false,
             error: ''
           });
 
-            let time = null;
-            let hitZoneMaster = null;
-            let hitZoneLesson = null;
-            let tatamiZoneMaster = null;
-            let tatamiZoneLesson = null;
+        //     let time = null;
+        //     let hitZoneMaster = null;
+        //     let hitZoneLesson = null;
+        //     let tatamiZoneMaster = null;
+        //     let tatamiZoneLesson = null;
 
-          allRows.forEach(row => {
-              time = row[0];
-              hitZoneMaster = row[1];
-              hitZoneLesson = row[2];
-              tatamiZoneMaster = row[3];
-              tatamiZoneLesson = row[4];
-          });
-          console.log('time: ', time, 'hitZoneMaster: ',hitZoneMaster, 'hitZoneLesson: ', hitZoneLesson, 'tatamiZoneMaster: ', tatamiZoneMaster, 'tatamiZoneLesson: ', tatamiZoneLesson);
+        //   allRows.forEach(row => {
+        //       time = row[0];
+        //       hitZoneMaster = row[1];
+        //       hitZoneLesson = row[2];
+        //       tatamiZoneMaster = row[3];
+        //       tatamiZoneLesson = row[4];
+        //   });
         } else {
           this.setState({ isLoading: false, error: response.data.error });
         }
@@ -89,13 +88,9 @@ class DayTabShow extends Component {
             sort: 'asc'
         }
       ];
-
-    console.log('this.rows: ', this.rows);
-    console.log('columns: ',columns);
-
     return (
       <>
-        <MDBTable responsive>
+        <MDBTable responsive className='text-center'>
             <MDBTableHead columns={columns}/>
             <MDBTableBody rows={this.rows} />
         </MDBTable> 
