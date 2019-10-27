@@ -34,6 +34,9 @@ class DayTabShow extends Component {
         //     let hitZoneLesson = null;
         //     let tatamiZoneMaster = null;
         //     let tatamiZoneLesson = null;
+        //     let hitZoneEntry = null;
+        //     let tatamiZoneEntry = null;
+        //     let newRows = [];
 
         //   allRows.forEach(row => {
         //       time = row[0];
@@ -41,7 +44,12 @@ class DayTabShow extends Component {
         //       hitZoneLesson = row[2];
         //       tatamiZoneMaster = row[3];
         //       tatamiZoneLesson = row[4];
+        //       hitZoneEntry= hitZoneLesson+hitZoneMaster;
+        //       tatamiZoneEntry= tatamiZoneLesson+'<br>'+tatamiZoneMaster;
+        //       newRows.push([time, hitZoneEntry, tatamiZoneEntry]);
         //   });
+
+        //   this.rows = newRows;
         } else {
           this.setState({ isLoading: false, error: response.data.error });
         }

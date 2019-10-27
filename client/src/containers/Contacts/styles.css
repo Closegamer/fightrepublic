@@ -13,5 +13,5 @@
 .md-form textarea.md-textarea {
   padding: 1.5rem 0;
   resize: both;
-  min-height: 300px;
+  max-height: 150px;
 }

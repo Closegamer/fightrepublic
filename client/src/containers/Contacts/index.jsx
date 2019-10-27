@@ -34,15 +34,36 @@ export class Contacts extends Component {
       <MDBContainer className='main-container' fluid>
         <MDBRow>
           <MDBCol xl='12' xs='12' className='contentArea-container'>
-            <h3>Контактная форма</h3>
+            <h3>Контактная информация</h3>
+            <br />
+            <br />
             <MDBRow>
               <MDBCol size={4}>
+                <h5>Напишите нам</h5>
                 <ContactForm
                   onSubmit={this.handleSubmit}
                   user={user}
                   isLoggedIn={isLoggedIn}
                   initialValues={initialValues}
                 />
+              </MDBCol>
+              <MDBCol size={6}>
+                <MDBRow>
+                  <MDBCol size={6}>
+                    <h5>Часы работы</h5>
+                    <br />
+                    <p>ПН-ПТ: 7:00 - 23:00</p>
+                    <p>СБ-ВС: 9:00 - 20:00</p>
+                    <br />
+                    <h5>Наш адрес</h5>													
+                    <br />
+                    <p>1-Нагатинский проезд, дом 2, стр. 7</p>
+                    <br />
+                    <h5>Наш телефон</h5>													
+                    <br />
+                    <p>+7 999 999-99-99</p>
+                  </MDBCol>
+                </MDBRow>
               </MDBCol>
             </MDBRow>
           </MDBCol>
