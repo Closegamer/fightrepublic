@@ -9,7 +9,7 @@ function Master2Info(props) {
         <MDBRow>
           <MDBCol xl='12' xs='12' className='contentArea-container'>
             <MDBRow>
-              <MDBCol size={12}>
+              <MDBCol xs='12'>
                 <h5>Станислав Казанцев</h5>
                 <br />
                 <h6>
@@ -20,28 +20,22 @@ function Master2Info(props) {
               </MDBCol>
             </MDBRow>
             <MDBRow>
-              <MDBCol size={6}>
-                {/* <p>Понедельник, среда, пятница с 18:00 до 19:30</p> */}
+              <MDBCol xs='12' sm='6'>
                 <p>
-                  <MDBIcon icon='certificate' className='redStar' />{' '}
-                  Профессиональный рекорд 25-4-1;
+                  <MDBIcon icon='certificate' className='redStar' /> Профессиональный рекорд 25-4-1;
                 </p>
                 <p>
-                  <MDBIcon icon='certificate' className='redStar' /> Кандидат в
-                  мастера спорта по тайскому боксу ;
+                  <MDBIcon icon='certificate' className='redStar' /> Кандидат в мастера спорта по тайскому боксу ;
                 </p>
                 <p>
-                  <MDBIcon icon='certificate' className='redStar' /> Чемпион
-                  Украины по тайскому боксу 2012;
+                  <MDBIcon icon='certificate' className='redStar' /> Чемпион Украины по тайскому боксу 2012;
                 </p>
                 <p>
-                  <MDBIcon icon='certificate' className='redStar' />{' '}
-                  Многократный призёр чемпионатов и кубков Украины по тайскому
-                  боксу;
+                  <MDBIcon icon='certificate' className='redStar' /> Многократный призёр чемпионатов и кубков Украины по тайскому боксу;
                 </p>
               </MDBCol>
-              <MDBCol size={6}>
-                <img src={pic1} className='masterBigPic' />
+              <MDBCol xs='12' sm='6'>
+                <img src={pic1} className='img-fluid' />
               </MDBCol>
             </MDBRow>
           </MDBCol>

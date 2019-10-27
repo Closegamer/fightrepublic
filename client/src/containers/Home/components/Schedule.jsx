@@ -22,37 +22,44 @@ render() {
         <MDBNav tabs className="nav-justified" color='black'>
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItemJustified === "1"} onClick={this.toggleJustified("1")} role="tab" >
-              <MDBIcon icon="clipboard-list" /> Понедельник
+            <span className='d-none d-sm-block'><MDBIcon icon="clipboard-list" />Понедельник</span>
+              <span className='d-block d-sm-none'>ПН</span>
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItemJustified === "2"} onClick={this.toggleJustified("2")} role="tab" >
-              <MDBIcon icon="clipboard-list" /> Вторник
+            <span className='d-none d-sm-block'><MDBIcon icon="clipboard-list" />Вторник</span>
+              <span className='d-block d-sm-none'>ВТ</span>
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItemJustified === "3"} onClick={this.toggleJustified("3")} role="tab" >
-              <MDBIcon icon="clipboard-list" /> Среда
+            <span className='d-none d-sm-block'><MDBIcon icon="clipboard-list" />Среда</span>
+              <span className='d-block d-sm-none'>СР</span>
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItemJustified === "4"} onClick={this.toggleJustified("4")} role="tab" >
-              <MDBIcon icon="clipboard-list" /> Четверг
+            <span className='d-none d-sm-block'><MDBIcon icon="clipboard-list" />Четверг</span>
+              <span className='d-block d-sm-none'>ЧТ</span>
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItemJustified === "5"} onClick={this.toggleJustified("5")} role="tab" >
-              <MDBIcon icon="clipboard-list" /> Пятница
+            <span className='d-none d-sm-block'><MDBIcon icon="clipboard-list" />Пятница</span>
+              <span className='d-block d-sm-none'>ПТ</span>
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItemJustified === "6"} onClick={this.toggleJustified("6")} role="tab" >
-              <MDBIcon icon="clipboard-list" /> Суббота
+            <span className='d-none d-sm-block'><MDBIcon icon="clipboard-list" />Суббота</span>
+              <span className='d-block d-sm-none'>СБ</span>
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItemJustified === "7"} onClick={this.toggleJustified("7")} role="tab" >
-              <MDBIcon icon="clipboard-list" /> Воскресенье
+            <span className='d-none d-sm-block'><MDBIcon icon="clipboard-list" />Воскресенье</span>
+              <span className='d-block d-sm-none'>ВС</span>
             </MDBNavLink>
           </MDBNavItem>
         </MDBNav>

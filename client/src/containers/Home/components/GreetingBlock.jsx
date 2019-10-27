@@ -8,16 +8,9 @@ import '../styles.css';
 const BlogPage = () => {
   return (
       <div>
-        
         <h2 className="h1-responsive font-weight-bold text-center my-5">
             Тренируйся сегодня, чтобы завтра быть лучше!
         </h2>
-        {/* <p className="text-center w-responsive mx-auto mb-5">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p> */}
         <MDBRow>
           <MDBCol lg="5">
             <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
@@ -50,39 +43,34 @@ const BlogPage = () => {
         </MDBRow>
         <hr className="my-5" />
         <MDBRow>
-          <MDBCol lg="7">
-            <h3 className="font-weight-bold mb-3 p-0">
-              <strong>Для тех, кто занимается для себя</strong>
-            </h3>
-            <p>
-            В нашем клубе Fight Republic имеется широкий выбор занятий: бокс, тайский бокс, кикбоксинг, ММА, BJJ, стретчинг, кроссфит. И на каждом направлении по несколько профессиональных тренеров с большим опытом преподавания. Вы сможете легко выбрать удобное время и подходящий коллектив для комфортных тренировок, доставляющих только пользу.
-
-            А после полуторачасового занятия ещё отдохнуть в сауне и восстановить силы!
-            </p>
-            <MDBBtn
-              color="pink"
-              size="md"
-              className="waves-light adminBtn"
-              href='/info'
-            >
-              Единоборства
-            </MDBBtn>
-            <MDBBtn href="/schedule-show" color="success" size="md" className="waves-light adminBtn" >
-              Расписание
-            </MDBBtn>
-          </MDBCol>
           <MDBCol lg="5">
-            <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
-              <img
-                className="img-fluid"
-                src={clubPic3}
-                alt=""
-              />
-              <a href="/info">
-                <MDBMask overlay="white-slight" />
-              </a>
-            </MDBView>
-          </MDBCol>
+              <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
+                <img
+                  className="img-fluid"
+                  src={clubPic3}
+                  alt=""
+                />
+              <a href="/masters">
+                  <MDBMask overlay="white-slight" />
+                </a>
+              </MDBView>
+            </MDBCol>
+            <MDBCol lg="7">
+              <h3 className="font-weight-bold mb-3 p-0">
+                <strong>Для тех, кто занимается для себя</strong>
+              </h3>
+              <p>
+              В нашем клубе Fight Republic имеется широкий выбор занятий: бокс, тайский бокс, кикбоксинг, ММА, BJJ, стретчинг, кроссфит. И на каждом направлении по несколько профессиональных тренеров с большим опытом преподавания. Вы сможете легко выбрать удобное время и подходящий коллектив для комфортных тренировок, доставляющих только пользу.
+
+              А после полуторачасового занятия ещё отдохнуть в сауне и восстановить силы!
+              </p>
+              <MDBBtn href="/info" color="success" size="md" className="waves-light adminBtn" >
+              Единоборства
+              </MDBBtn>
+              <MDBBtn href="/schedule-show" color="success" size="md" className="waves-light adminBtn" >
+                Расписание
+              </MDBBtn>
+            </MDBCol>
         </MDBRow>
         <hr className="my-5" />
         <MDBRow>
