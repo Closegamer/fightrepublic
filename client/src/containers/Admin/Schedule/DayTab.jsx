@@ -28,7 +28,6 @@ class DayTab extends Component {
       .then(response => {
         if (response.data.success) {
           this.rows = response.data.rows || [['', '', '', '', '']];
-          console.log(this.rows);
           this.setState({
             isLoading: false,
             isSaving: false,
@@ -51,7 +50,6 @@ class DayTab extends Component {
     const day = this.props.day;
     const data = this.table.current.state.data;
 
-    console.log(data);
     return axios
       .post(`/api/days/save`, { data, day })
       .then(response => {
