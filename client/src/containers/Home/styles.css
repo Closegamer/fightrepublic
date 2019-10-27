@@ -187,3 +187,8 @@
   min-width: 200px !important;
   background-color: #cc0000 !important;
 }
+
+.xsSchedule {
+  display: none;
+}
+
