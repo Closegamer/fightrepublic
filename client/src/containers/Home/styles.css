@@ -182,3 +182,8 @@
   padding: 15px !important;
   margin-top: 15px !important;
 }
+
+.adminBtn {
+  min-width: 200px !important;
+  background-color: #cc0000 !important;
+}

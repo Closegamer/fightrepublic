@@ -1,17 +1,34 @@
 import React from 'react';
-
-import Intro from './components/Intro';
+import GreetingBlock from './components/GreetingBlock';
 import Schedule from './components/Schedule';
+import Masters from '../../containers/Masters';
+import Price from '../../containers/Price';
+import Contacts from '../../containers/Contacts';
 import './styles.css';
 
 function HomePage(props) {
   return (
     <React.Fragment>
       <div className='sepBlock'>
-        <Intro />
+        <GreetingBlock />
       </div>
       <div className='sepBlock'>
+        <h2 className="h1-responsive font-weight-bold text-center my-5">
+            Расписание
+        </h2>
         <Schedule  />
+      </div>
+      <div className='sepBlock'>
+        <Masters  />
+      </div>
+      <div className='sepBlock'>
+        <Price  />
+      </div>
+      <div className='sepBlock'>
+        <h2 className="h1-responsive font-weight-bold text-center my-5">
+            Контакты
+        </h2>
+        <Contacts  />
       </div>
     </React.Fragment>
   );

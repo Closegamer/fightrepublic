@@ -2,6 +2,7 @@ import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
 import '../../styles.css';
 import pic1 from '../../../../img/masters/Rybalko/image5.jpeg';
+
 function Master1Info(props) {
   return (
     <React.Fragment>

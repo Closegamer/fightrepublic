@@ -7,6 +7,9 @@ function SportsInfo(props) {
       <MDBContainer className='main-container' fluid>
         <MDBRow>
           <MDBCol xl='12' xs='12' className='contentArea-container'>
+          <h2 className="h1-responsive font-weight-bold text-center my-5">
+                Единоборства
+            </h2>
             <MDBRow>
               <MDBCol>
                 <h5>Тайский бокс или муай-тай</h5>

@@ -61,24 +61,31 @@ render() {
           activeItem={this.state.activeItemJustified}
         >
           <MDBTabPane tabId="1" role="tabpanel">
+            <h5>Понедельник</h5>
             <DayTabShow day={'monday'} />
           </MDBTabPane>
           <MDBTabPane tabId="2" role="tabpanel">
+            <h5>Вторник</h5>
             <DayTabShow day={'tuesday'} />
           </MDBTabPane>
           <MDBTabPane tabId="3" role="tabpanel">
+            <h5>Среда</h5>
             <DayTabShow day={'wednesday'} />
           </MDBTabPane>
           <MDBTabPane tabId="4" role="tabpanel">
+            <h5>Четверг</h5>
             <DayTabShow day={'thursday'} />
           </MDBTabPane>
           <MDBTabPane tabId="5" role="tabpanel">
+            <h5>Пятница</h5>
             <DayTabShow day={'friday'} />
           </MDBTabPane>
           <MDBTabPane tabId="6" role="tabpanel">
+            <h5>Суббота</h5>
             <DayTabShow day={'saturday'} />
           </MDBTabPane>
           <MDBTabPane tabId="7" role="tabpanel">
+            <h5>Воскресенье</h5>
             <DayTabShow day={'sunday'} />
           </MDBTabPane>
         </MDBTabContent>

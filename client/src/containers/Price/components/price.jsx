@@ -13,12 +13,13 @@ function PriceInfo(props) {
     <React.Fragment>
       <MDBContainer className='main-container' fluid>
         <MDBRow>
-          <MDBCol xl='12' xs='12' className='contentArea-container'>
+          <MDBCol xl='12' xs='12' className='contentArea-container '>
+          <h2 className="h1-responsive font-weight-bold text-center my-5">
+            Цены
+          </h2>
             <MDBRow>
-              <MDBCol>
-                <h5>Бойцовский клуб</h5>
-                <br />
-                <MDBTable bordered responsive autoWidth>
+              <MDBCol className='text-center'>
+                <MDBTable striped responsive>
                   <MDBTableHead>
                     <tr className='text-center'>
                       <th>Вид карты</th>
@@ -219,3 +220,4 @@ function PriceInfo(props) {
 PriceInfo.propTypes = {};
 
 export default PriceInfo;
+

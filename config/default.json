@@ -3,6 +3,6 @@
   "jwtSecret": "***",
   "jwtRefreshSecret": "***",
   "jwtResetSecret": "***",
-  "mailUser": "closegamer@mail.ru",
+  "mailUser": "FightRepublic@yandex.ru",
   "mailPassword": "***"
 }

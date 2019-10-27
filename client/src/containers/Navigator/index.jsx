@@ -99,13 +99,7 @@ export class Navigator extends Component {
               id='instruction-cat'
               icon='calendar-alt'
             >
-              <MDBSideNavItem href='/schedule/mon'>Понедельник</MDBSideNavItem>
-              <MDBSideNavItem href='/schedule/tue'>Вторник</MDBSideNavItem>
-              <MDBSideNavItem href='/schedule/wed'>Среда</MDBSideNavItem>
-              <MDBSideNavItem href='/schedule/thu'>Четверг</MDBSideNavItem>
-              <MDBSideNavItem href='/schedule/fri'>Пятница</MDBSideNavItem>
-              <MDBSideNavItem href='/schedule/sat'>Суббота</MDBSideNavItem>
-              <MDBSideNavItem href='/schedule/sun'>Воскресенье</MDBSideNavItem>
+              <MDBSideNavItem href='/schedule-show'>Все дни</MDBSideNavItem>
             </MDBSideNavCat>
             <MDBSideNavCat name='О клубе' id='about-cat' icon='crown'>
               <MDBSideNavItem href='/masters'>Тренеры</MDBSideNavItem>
@@ -164,6 +158,15 @@ export class Navigator extends Component {
               <MDBNavLink to='/info'>
                 <MDBIcon icon='info-circle' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Единоборства</div>
+              </MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem
+              active={this.props.location.pathname.includes('/schedule-show')}
+              className='d-none d-sm-block'
+            >
+              <MDBNavLink to='/schedule-show'>
+                <MDBIcon icon='clipboard-list' className='d-inline-inline' />{' '}
+                <div className='d-none d-md-inline'>Расписание</div>
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem

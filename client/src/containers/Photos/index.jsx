@@ -48,6 +48,9 @@ class Photos extends React.Component {
     const { photoIndex, isOpen, images } = this.state;
     return (
       <MDBContainer className='mt-5 p-3'>
+        <h2 className="h1-responsive font-weight-bold text-center my-5">
+          Галерея
+        </h2>
         <div className='mdb-lightbox p-3'>
           <MDBRow>{this.renderImages()}</MDBRow>
         </div>

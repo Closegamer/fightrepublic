@@ -88,7 +88,7 @@ router.post(
       const tokensData = await createTokenPair(payload, payload);
 
       sendMail(
-        'Closegamer School <closegamer@mail.ru>',
+        'FightRepublic <FightRepublic@yandex.ru>',
         email,
         'Успешная регистрация',
         `Ваш пароль: <b>${password}</b>`
@@ -199,7 +199,7 @@ router.post('/reset', async (req, res) => {
       '">Сбросить пароль</a>';
 
     sendMail(
-      'Closegamer School <closegamer@mail.ru>',
+      'FightRepublic <FightRepublic@yandex.ru>',
       foundUserEmail,
       'Сброс пароля',
       `Перейди по ссылке, товарищ: <b>${recoveryLink}</b>`
@@ -262,7 +262,7 @@ router.post('/password-recovered', async (req, res) => {
       );
 
       sendMail(
-        'Closegamer School <closegamer@mail.ru>',
+        'FightRepublic <FightRepublic@yandex.ru>',
         userToUpdate.email,
         'Ваш пароль сброшен.',
         `Новый пароль: ${password}`

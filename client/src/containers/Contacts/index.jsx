@@ -39,7 +39,7 @@ export class Contacts extends Component {
             <br />
             <MDBRow>
               <MDBCol size={4}>
-                <h5>Напишите нам</h5>
+                <h5>Форма обратной связи для записи на занятия и по любым другим вопросам</h5>
                 <ContactForm
                   onSubmit={this.handleSubmit}
                   user={user}
