@@ -54,6 +54,7 @@ app.use('/api/days', require('./routes/api/days'));
 
 // Serve static assets in production
 app.use('/api/upload', express.static(__dirname + '/upload'));
+app.use('/upload', express.static(__dirname + '/upload'));
 
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
