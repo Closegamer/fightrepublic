@@ -12,12 +12,12 @@ const BlogPage = () => {
         <h2 className="h1-responsive font-weight-bold text-center my-5">
             Тренируйся сегодня, чтобы завтра быть лучше!
         </h2>
-        <p className="text-center w-responsive mx-auto mb-5">
+        {/* <p className="text-center w-responsive mx-auto mb-5">
           Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
           cupidatat non proident, sunt in culpa qui officia deserunt mollit
           anim id est laborum.
-        </p>
+        </p> */}
         <MDBRow>
           <MDBCol lg="5">
             <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>

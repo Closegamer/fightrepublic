@@ -63,23 +63,13 @@ export class Navigator extends Component {
           <li>
             <ul className='social'>
               <li>
-                <a href='#!'>
+                <a href='https://www.facebook.com/106914570732934/'>
                   <MDBIcon fab icon='facebook-f' />
                 </a>
               </li>
               <li>
-                <a href='#!'>
-                  <MDBIcon fab icon='pinterest' />
-                </a>
-              </li>
-              <li>
-                <a href='#!'>
-                  <MDBIcon fab icon='google-plus-g' />
-                </a>
-              </li>
-              <li>
-                <a href='#!'>
-                  <MDBIcon fab icon='twitter' />
+                <a href='https://instagram.com/fight.republic?igshid=neaf30uxu4yu'>
+                  <MDBIcon fab icon='instagram' />
                 </a>
               </li>
             </ul>
