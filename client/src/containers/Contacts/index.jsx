@@ -38,7 +38,7 @@ export class Contacts extends Component {
             <br />
             <br />
             <MDBRow>
-              <MDBCol size={4}>
+              <MDBCol xl='4' sm='4' md='4' xs='12' >
                 <h5>Форма обратной связи для записи на занятия и по любым другим вопросам</h5>
                 <ContactForm
                   onSubmit={this.handleSubmit}
@@ -47,9 +47,9 @@ export class Contacts extends Component {
                   initialValues={initialValues}
                 />
               </MDBCol>
-              <MDBCol size={6}>
+              <MDBCol xl='8' sm='8' md='8' xs='12' >
                 <MDBRow>
-                  <MDBCol size={6}>
+                  <MDBCol xl='6' sm='6' md='6' xs='12'>
                     <h5>Часы работы</h5>
                     <br />
                     <p>ПН-ПТ: 7:00 - 23:00</p>
