@@ -4,6 +4,7 @@ import ContactForm from './contactForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as publicActions from '../../ducks/public';
+import Map from './googleMap';
 
 export class Contacts extends Component {
   handleSubmit = values => {
@@ -66,6 +67,9 @@ export class Contacts extends Component {
                     <br />
                     <p>+7 495 220-26-24</p>
                     <p>+7 985 220-26-24</p>
+                  </MDBCol>
+                  <MDBCol xl='6' sm='6' md='6' xs='12'>
+                    <Map />
                   </MDBCol>
                 </MDBRow>
               </MDBCol>
