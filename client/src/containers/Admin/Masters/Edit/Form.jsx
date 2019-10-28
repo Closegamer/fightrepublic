@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { TextField, SelectField, FileField } from '../../../../fields';
+import { TextField, SelectField, FileField, TextArea } from '../../../../fields';
 import { MDBBtn } from 'mdbreact';
 import store from '../../../../store';
 import makeAnimated from 'react-select/animated';
@@ -86,6 +86,48 @@ let Form = props => {
           type='text'
           label='Фамилия'
           group
+        />
+      )}
+      {loadedMaster && (
+        <Field
+          name='specialization'
+          component={TextField}
+          value={loadedMaster.specialization}
+          type='text'
+          label='Специализация'
+          group
+        />
+      )}
+      {!loadedMaster && (
+        <Field
+          name='specialization'
+          component={TextField}
+          type='text'
+          label='Специализация'
+          group
+        />
+      )}
+      {loadedMaster && (
+        <Field
+          name='regalies'
+          component={TextArea}
+          label={'Регалии'}
+          group
+          type='textarea'
+          rows={'15'}
+          maxlength={'2000'}
+          value={loadedMaster.regalies}
+        />
+      )}
+      {!loadedMaster && (
+        <Field
+          name='regalies'
+          component={TextArea}
+          label={'Введите сообщение'}
+          group
+          type='textarea'
+          rows={'15'}
+          maxlength={'2000'}
         />
       )}
       <Field name='bigPic' component={FileField} />
