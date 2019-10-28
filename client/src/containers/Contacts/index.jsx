@@ -38,8 +38,11 @@ export class Contacts extends Component {
             <br />
             <br />
             <MDBRow>
-              <MDBCol xl='4' sm='4' md='4' xs='12' >
-                <h5>Форма обратной связи для записи на занятия и по любым другим вопросам</h5>
+              <MDBCol xl='4' sm='4' md='4' xs='12'>
+                <h5>
+                  Форма обратной связи для записи на занятия и по любым другим
+                  вопросам
+                </h5>
                 <ContactForm
                   onSubmit={this.handleSubmit}
                   user={user}
@@ -47,7 +50,7 @@ export class Contacts extends Component {
                   initialValues={initialValues}
                 />
               </MDBCol>
-              <MDBCol xl='8' sm='8' md='8' xs='12' >
+              <MDBCol xl='8' sm='8' md='8' xs='12'>
                 <MDBRow>
                   <MDBCol xl='6' sm='6' md='6' xs='12'>
                     <h5>Часы работы</h5>
@@ -55,13 +58,14 @@ export class Contacts extends Component {
                     <p>ПН-ПТ: 7:00 - 23:00</p>
                     <p>СБ-ВС: 9:00 - 20:00</p>
                     <br />
-                    <h5>Наш адрес</h5>													
+                    <h5>Наш адрес</h5>
                     <br />
                     <p>1-Нагатинский проезд, дом 2, стр. 7</p>
                     <br />
-                    <h5>Наш телефон</h5>													
+                    <h5>Наш телефон</h5>
                     <br />
-                    <p>+7 999 999-99-99</p>
+                    <p>+7 495 220-26-24</p>
+                    <p>+7 985 220-26-24</p>
                   </MDBCol>
                 </MDBRow>
               </MDBCol>
