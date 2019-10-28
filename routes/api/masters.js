@@ -37,7 +37,7 @@ router.post('/create', async (req, res) => {
     updateFlag = true;
   }
 
-  let { humanId, firstName, lastName, bigPic } = req.body;
+  let { humanId, firstName, lastName, specialization, regalies, bigPic } = req.body;
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -53,6 +53,14 @@ router.post('/create', async (req, res) => {
 
   if (!lastName) {
     lastName = 'Фамилия';
+  }
+
+  if (!specialization) {
+    specialization = 'Специализация';
+  }
+
+  if (!regalies) {
+    regalies = 'Чемпион всего';
   }
 
   date = Date.now();
@@ -92,6 +100,8 @@ router.post('/create', async (req, res) => {
         humanId,
         firstName,
         lastName,
+        specialization,
+        regalies,
         bigPic,
         date
       });

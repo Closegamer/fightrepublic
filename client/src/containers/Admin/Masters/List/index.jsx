@@ -50,6 +50,8 @@ export class MastersControl extends Component {
                   <th scope='col'>humanId</th>
                   <th scope='col'>Имя</th>
                   <th scope='col'>Фамилия</th>
+                  <th scope='col'>Специализация</th>
+                  <th scope='col'>Регалии</th>
                   <th scope='col'>Фото</th>
                 </tr>
               </thead>
@@ -59,6 +61,9 @@ export class MastersControl extends Component {
                     <tr key={index}>
                       <td>{master.humanId}</td>
                       <td>{master.firstName}</td>
+                      <td>{master.lastName}</td>
+                      <td>{master.specialization}</td>
+                      <td>{master.regalies}</td>
                       <td>{master.lastName}</td>
                       <td>
                         {master.bigPic &&

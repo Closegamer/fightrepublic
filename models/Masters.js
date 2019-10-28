@@ -14,6 +14,14 @@ const MastersSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  specialization: {
+    type: String,
+    required: true
+  },
+  regalies: {
+    type: String,
+    required: true
+  },
   bigPic: {
     guid: {
       type: String,

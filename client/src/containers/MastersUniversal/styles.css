@@ -1,0 +1,19 @@
+.mastersBoard {
+    max-height: 280px;
+}
+
+.redStar {
+    color: #cc0000;
+}
+
+.masterBigPic {
+    max-width: 800px;
+}
+
+.bordered {
+    border: 1px solid green;
+}
+
+.borderedRed {
+    border: 1px solid red;
+}
