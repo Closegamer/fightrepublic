@@ -12,15 +12,10 @@ const Info = lazy(() => import('./containers/Info'));
 const Price = lazy(() => import('./containers/Price'));
 const Photos = lazy(() => import('./containers/Photos'));
 const MastersUniversal = lazy(() => import('./containers/MastersUniversal'));
-// const Master6 = lazy(() => import('./containers/Masters/components/Master6'));
-// const Master1 = lazy(() => import('./containers/Masters/components/Master1'));
-// const Master2 = lazy(() => import('./containers/Masters/components/Master2'));
-// const Master3 = lazy(() => import('./containers/Masters/components/Master3'));
-// const Master4 = lazy(() => import('./containers/Masters/components/Master4'));
-// const Master5= lazy(() => import('./containers/Masters/components/Master5'));
-// const Master6 = lazy(() => import('./containers/Masters/components/Master6'));
 const ScheduleShow = lazy(() => import('./containers/ScheduleShow'));
-
+const SingleMasterInfo = lazy(() =>
+  import('./containers/MastersUniversal/SingleMasterInfo.jsx')
+);
 
 function Routes(auth) {
   return (
@@ -32,15 +27,9 @@ function Routes(auth) {
         <Route exact path='/info/' component={Info} />
         <Route exact path='/price/' component={Price} />
         <Route exact path='/photos/' component={Photos} />
-        {/* <Route exact path='/masters/' component={Masters} /> */}
         <Route exact path='/schedule-show/' component={ScheduleShow} />
         <Route exact path='/masters' component={MastersUniversal} />
-        {/* <Route exact path='/masters/Master1' component={Master1} />
-        <Route exact path='/masters/Master2' component={Master2} />
-        <Route exact path='/masters/Master3' component={Master3} />
-        <Route exact path='/masters/Master4' component={Master4} />
-        <Route exact path='/masters/Master5' component={Master5} />
-        <Route exact path='/masters/Master6' component={Master6} /> */}
+        <Route exact path='/masters/:humanId' component={SingleMasterInfo} />
         <Route exact path='/recovery/:token' component={Recovery} />
         <PrivateRoute
           user={auth.user}
