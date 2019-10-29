@@ -1,7 +1,7 @@
 import React from 'react';
 import GreetingBlock from './components/GreetingBlock';
 import Schedule from './components/Schedule';
-import Masters from '../../containers/Masters';
+import MastersUniversal from '../../containers/MastersUniversal';
 import Price from '../../containers/Price';
 import Contacts from '../../containers/Contacts';
 import './styles.css';
@@ -13,22 +13,25 @@ function HomePage(props) {
         <GreetingBlock />
       </div>
       <div className='sepBlock'>
-        <h2 className="h1-responsive font-weight-bold text-center my-5">
-            Расписание
+        <h2 className='h1-responsive font-weight-bold text-center my-5'>
+          Расписание
         </h2>
-        <Schedule  />
+        <Schedule />
       </div>
       <div className='sepBlock'>
-        <Masters  />
-      </div>
-      <div className='sepBlock'>
-        <Price  />
-      </div>
-      <div className='sepBlock'>
-        <h2 className="h1-responsive font-weight-bold text-center my-5">
-            Контакты
+        <h2 className='h1-responsive font-weight-bold text-center my-5'>
+          Тренеры
         </h2>
-        <Contacts  />
+        <MastersUniversal />
+      </div>
+      <div className='sepBlock'>
+        <Price />
+      </div>
+      <div className='sepBlock'>
+        <h2 className='h1-responsive font-weight-bold text-center my-5'>
+          Контакты
+        </h2>
+        <Contacts />
       </div>
     </React.Fragment>
   );
