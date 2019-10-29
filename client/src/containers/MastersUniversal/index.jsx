@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { MDBRow, MDBContainer, MDBCol, MDBBtn } from 'mdbreact';
 import axios from 'axios';
 import './styles.css';
-import config from '../../config.json';
-
-const uploadDir = config.uploadDir;
+import Single from './Single.jsx';
 
 export class MastersUniversalControl extends Component {
   state = {
@@ -18,7 +16,6 @@ export class MastersUniversalControl extends Component {
       .post(`/api/masters/list`)
       .then(response => {
         if (response.data.success) {
-            console.log(response.data.masters);
           this.setState({
             isLoading: false,
             error: '',
@@ -39,26 +36,24 @@ export class MastersUniversalControl extends Component {
 
   render() {
     const masters = this.state.masters;
-    console.log('masters:', masters);
     return (
-        <MDBContainer fluid>
-            <MDBRow>
-            {masters.map((master, index) => {
-                return (
-                <MDBCol
-                    xs='12'
-                    sm='4'
-                    md='3'
-                    lg='2'
-                    xl='2'
-                    key={index}
-                >
-                    {master.humanId}
+      <MDBContainer className='main-container text-center' fluid>
+        <MDBRow>
+          {!!masters[0] &&
+            masters.map((master, index) => {
+              return (
+                <MDBCol size={12} key={index} id='conn'>
+                  <a
+                    className='text-center noDecor'
+                    href={'/masters/' + `${master.humanId}`}
+                  >
+                    <Single master={master} index={index} />
+                  </a>
                 </MDBCol>
-                );
+              );
             })}
-            </MDBRow>
-        </MDBContainer>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }
