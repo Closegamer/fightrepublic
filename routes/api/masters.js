@@ -13,9 +13,9 @@ router.post('/load-single-master', async (req, res) => {
   const humanId = req.body.humanId;
 
   try {
-    const master = await Masters.find({ humanId });
+    const master = await Masters.findOne({ humanId });
 
-    res.json({ success: true, master });
+    res.json({ success: true, loadedMaster: master });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -48,7 +48,6 @@ router.post('/list', async (req, res) => {
 // @access   Public
 router.post('/create', async (req, res) => {
   let updateFlag = false;
-
   if (!!req.body.humanId) {
     updateFlag = true;
   }
@@ -129,6 +128,7 @@ router.post('/create', async (req, res) => {
         date
       });
     }
+
     if (Object.keys(req.files).length !== 0) {
       let bigPic = req.files.bigPic;
       const realName = bigPic.name;

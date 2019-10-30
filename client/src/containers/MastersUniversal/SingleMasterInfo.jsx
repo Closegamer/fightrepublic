@@ -23,7 +23,7 @@ export default class SingleMasterInfo extends Component {
             this.setState({
               isLoading: false,
               error: '',
-              loadedMaster: response.data.master
+              loadedMaster: response.data.loadedMaster
             });
           } else {
             this.setState({ isLoading: false, error: response.data.error });
@@ -44,7 +44,8 @@ export default class SingleMasterInfo extends Component {
     if (isLoading) return <div>спинер</div>;
 
     const { loadedMaster } = this.state;
-    const master = loadedMaster[0];
+    console.log('loadedMaster from show: ', loadedMaster);
+    const master = loadedMaster;
     const uploadDir = config.uploadDir;
     const regaliesListPre = master.regalies;
     const regaliesProcess = regaliesListPre.split(';');

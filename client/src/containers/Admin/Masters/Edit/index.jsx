@@ -8,9 +8,10 @@ import Form from './Form';
 import './styles.css';
 import config from '../../../../config.json';
 
+const uploadDir = config.uploadDir;
+
 export class Edit extends Component {
   static propTypes = {};
-
   componentDidMount() {
     const { mastersActions, match } = this.props;
 
@@ -31,25 +32,49 @@ export class Edit extends Component {
   };
 
   render() {
+    console.log('admin masters edit');
+
     const { loadedMaster, loadedMasterInProgress, match } = this.props;
 
     const humanId = match.params.humanId;
 
-    if (!!humanId && (!loadedMaster || loadedMasterInProgress)) {
+    if (loadedMasterInProgress) {
       return <MDBSpinner />;
+    }
+
+    let initialValues = null;
+
+    if (humanId && loadedMaster) {
+      initialValues = loadedMaster;
     }
 
     return (
       <div className='monitor-cont'>
         <MDBRow>
-          <MDBCol size='4'>
+          <MDBCol xs='12' sm='4'>
             {humanId && <h3>Редактировать тренера</h3>}
             {!humanId && <h3>Новый тренер</h3>}
           </MDBCol>
         </MDBRow>
         <MDBRow>
-          <MDBCol size='4'>
-            <Form onSubmit={this.onSubmit} loadedMaster={loadedMaster} />
+          <MDBCol xs='12' sm='4'>
+            <Form
+              onSubmit={this.onSubmit}
+              loadedMaster={loadedMaster}
+              initialValues={initialValues}
+            />
+          </MDBCol>
+          <MDBCol xs='12' sm='8'>
+            {initialValues && (
+              <React.Fragment>
+                <h5>Выбранное фото</h5>
+                <img
+                  alt={loadedMaster.lastName}
+                  className='img-fluid'
+                  src={`${uploadDir}${loadedMaster.bigPic.guid}${loadedMaster.bigPic.ext}`}
+                />
+              </React.Fragment>
+            )}
           </MDBCol>
         </MDBRow>
       </div>
@@ -63,7 +88,7 @@ const mapStateToProps = ({ masters }) => ({
   masterCreatedAt: masters.masterCreatedAt,
 
   loadedMaster: masters.loadedMaster,
-  loadedMasterInProgress: masters.loadedMasterInProgress
+  loadedMasterInProgress: masters.masterLoadingInProgress
 });
 
 const mapDispatchToProps = dispatch => ({
