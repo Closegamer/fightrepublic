@@ -32,6 +32,7 @@ function Masters({ match }) {
           exact
           component={Edit}
         />{' '}
+        <Route path={`${match.path}/delete/:humanId`} exact component={List} />
       </Switch>
     </React.Fragment>
   );

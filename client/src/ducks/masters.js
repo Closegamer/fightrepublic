@@ -76,9 +76,9 @@ const deleteMasterStart = () => ({
   type: DELETING_MASTER_START
 });
 
-const deleteMasterSucceed = master => ({
+const deleteMasterSucceed = deletedMaster => ({
   type: DELETING_MASTER_SUCCEED,
-  master,
+  deletedMaster,
   fetchedAt: Date.now()
 });
 
@@ -138,9 +138,10 @@ export const loadMaster = humanId => (dispatch, getState) => {
 export const deleteMaster = humanId => (dispatch, getState) => {
   dispatch(deleteMasterStart());
   return axios
-    .get(`/api/masters/delete/${humanId}`)
+    .post('/api/masters/delete', { humanId })
     .then(response => {
-      dispatch(deleteMasterSucceed(humanId));
+      dispatch(deleteMasterSucceed(response.data.deletedMaster));
+      // return response.data;
     })
     .catch(error => {
       dispatch(deleteMasterFailed(error.message));
@@ -149,8 +150,11 @@ export const deleteMaster = humanId => (dispatch, getState) => {
 
 const initialState = Immutable({
   mastersLoadingInProgress: false,
-  masterLoadingInProgress: false,
   mastersLoadingError: '',
+  masterLoadingInProgress: false,
+  masterDeletingInProgress: false,
+  masterDeletingError: '',
+  deletedMaster: null,
   list: [],
   loadedMaster: null
 });
@@ -204,6 +208,26 @@ export default function reducer(state = initialState, action = {}) {
       return Immutable.merge(state, {
         masterLoadingInProgress: false,
         masterLoadingError: action.error
+      });
+    case DELETING_MASTER_START:
+      return Immutable.merge(state, {
+        masterDeletingInProgress: true
+      });
+
+    case DELETING_MASTER_SUCCEED:
+      const masters = [...state.list.asMutable()];
+      return Immutable.merge(state, {
+        masterDeletingInProgress: false,
+        list: Immutable(
+          masters.filter(m => m.humanId !== action.deletedMaster)
+        ),
+        deletedMaster: action.deletedMaster
+      });
+
+    case DELETING_MASTER_FAILED:
+      return Immutable.merge(state, {
+        masterDeletingInProgress: false,
+        masterDeletingError: action.error
       });
     default:
       return state;

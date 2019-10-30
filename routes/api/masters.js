@@ -6,6 +6,23 @@ const Masters = require('../../models/Masters');
 const uuid = require('uuid/v4');
 const path = require('path');
 
+// @route    POST api/masters/delete
+// @desc     delete-single-master
+// @access   Public
+router.post('/delete', async (req, res) => {
+  const humanId = req.body.humanId;
+  try {
+    if (humanId) {
+      await Masters.deleteOne({ humanId: humanId });
+    }
+
+    res.json({ success: true, deletedMaster: humanId });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route    POST api/masters/load-single-master
 // @desc     load-single-master
 // @access   Public
@@ -61,9 +78,6 @@ router.post('/create', async (req, res) => {
     regalies,
     bigPic
   } = req.body;
-
-  console.log('req.body: ', req.body);
-  console.log('req.files: ', req.files);
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
