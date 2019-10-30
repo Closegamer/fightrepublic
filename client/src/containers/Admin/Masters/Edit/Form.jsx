@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { TextField, FileField, TextArea } from '../../../../fields';
-import { MDBBtn } from 'mdbreact';
+import { MDBBtn, MDBIcon } from 'mdbreact';
 import store from '../../../../store';
 import './styles.css';
 
@@ -52,8 +52,16 @@ let Form = props => {
         rows={'15'}
         maxlength={'2000'}
       />
-      {/* {!loadedMaster && <Field name='bigPic' component={FileField} />} */}
-      <Field name='bigPic' component={FileField} />
+      {!!loadedMaster && (
+        <React.Fragment>
+          <Field name='bigPic' component={FileField} />{' '}
+          <p className='red-text'>
+            <MDBIcon icon='exclamation-triangle' /> Внимание! Если фото не
+            меняется, это поле оставить пустым!
+          </p>
+        </React.Fragment>
+      )}
+      {!loadedMaster && <Field name='bigPic' component={FileField} />}
       <MDBBtn type='submit' className='adminBtn mt15'>
         Создать
       </MDBBtn>
