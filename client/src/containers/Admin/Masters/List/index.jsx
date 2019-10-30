@@ -5,13 +5,15 @@ import {
   MDBCol,
   MDBBtn,
   MDBIcon,
-  MDBNavLink
+  MDBNavLink,
+  MDBSpinner
 } from 'mdbreact';
 import axios from 'axios';
 import '../../styles.css';
 import config from '../../../../config.json';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import * as mastersActions from '../../../../ducks/masters';
 
 const uploadDir = config.uploadDir;
@@ -24,43 +26,46 @@ export class MastersControl extends Component {
   };
 
   componentDidMount() {
-    return axios
-      .post(`/api/masters/list`)
-      .then(response => {
-        if (response.data.success) {
-          this.setState({
-            isLoading: false,
-            error: '',
-            masters: response.data.masters
-          });
-        } else {
-          this.setState({ isLoading: false, error: response.data.error });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        this.setState({
-          isLoading: false,
-          error: 'nope'
-        });
-      });
+    const { mastersActions } = this.props;
+    mastersActions.loadMasters();
+
+    // return axios
+    //   .post(`/api/masters/list`)
+    //   .then(response => {
+    //     if (response.data.success) {
+    //       this.setState({
+    //         isLoading: false,
+    //         error: '',
+    //         masters: response.data.masters
+    //       });
+    //     } else {
+    //       this.setState({ isLoading: false, error: response.data.error });
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //     this.setState({
+    //       isLoading: false,
+    //       error: 'nope'
+    //     });
+    //   });
   }
 
-  // editMaster = humanId => {
-  //   // console.log('editMaster: ', humanId);
-  //   const { mastersActions } = this.props;
-  //   mastersActions.loadMaster(humanId);
-  //   // window.location.assign('/Masters/Edit');
-  // };
-
-  // deleteMaster = humanId => {
-  //   console.log('deleteMaster: ', humanId);
-  // };
+  deleteMaster = humanId => {
+    const { mastersActions, history } = this.props;
+    mastersActions.deleteMaster(humanId);
+  };
 
   render() {
+    const { list, mastersLoadingInProgress, mastersLoadingError } = this.props;
+
+    if (!!mastersLoadingError) return <div>{mastersLoadingError}</div>;
+
+    if (mastersLoadingInProgress) return <MDBSpinner />;
+
     return (
       <div>
-        {!this.state.masters[0] ? (
+        {!list[0] ? (
           <div>Тренеров не найдено</div>
         ) : (
           <div className='monitor-cont'>
@@ -78,7 +83,7 @@ export class MastersControl extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.masters.map((master, index) => {
+                {list.map((master, index) => {
                   return (
                     <tr key={index}>
                       <td>{master.humanId}</td>
@@ -104,14 +109,18 @@ export class MastersControl extends Component {
                           color='success'
                           to={'/admin/masters/create/' + `${master.humanId}`}
                         >
-                          <MDBIcon far icon='edit' />
+                          <MDBBtn rounded outline color='success'>
+                            <MDBIcon far icon='edit' />
+                          </MDBBtn>
                         </MDBNavLink>
-                        <MDBNavLink
-                          color='success'
-                          to={'/admin/masters/delete/' + `${master.humanId}`}
+                        <MDBBtn
+                          onClick={e => this.deleteMaster(master.humanId)}
+                          color='danger'
+                          rounded
+                          outline
                         >
                           <MDBIcon far icon='trash-alt' />
-                        </MDBNavLink>
+                        </MDBBtn>
                       </td>
                     </tr>
                   );
@@ -125,7 +134,12 @@ export class MastersControl extends Component {
   }
 }
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = ({ masters }) => ({
+  list: masters.list,
+  mastersLoadingInProgress: masters.mastersLoadingInProgress,
+  mastersLoadingError: masters.mastersLoadingError,
+  mastersLoadedAt: masters.mastersLoadedAt
+});
 
 const mapDispatchToProps = dispatch => ({
   mastersActions: bindActionCreators({ ...mastersActions }, dispatch)

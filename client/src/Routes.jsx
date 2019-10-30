@@ -42,6 +42,11 @@ function Routes(auth) {
           path='/admin/masters/create'
           component={() => <AdminMasters />}
         />
+        <PrivateRoute
+          user={auth.user}
+          path='/admin/masters/delete'
+          component={() => <AdminMasters />}
+        />
       </Switch>
     </Suspense>
   );
