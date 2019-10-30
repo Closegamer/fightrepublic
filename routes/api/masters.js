@@ -48,9 +48,6 @@ router.post('/list', async (req, res) => {
 // @access   Public
 router.post('/create', async (req, res) => {
   let updateFlag = false;
-  if (!!req.body.humanId) {
-    updateFlag = true;
-  }
 
   let {
     humanId,
@@ -60,6 +57,11 @@ router.post('/create', async (req, res) => {
     regalies,
     bigPic
   } = req.body;
+
+  if (!!req.body.humanId) {
+    updateFlag = true;
+    let { humanId, firstName, lastName, specialization, regalies } = req.body;
+  }
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -93,7 +95,7 @@ router.post('/create', async (req, res) => {
     if (updateFlag) {
       master = await Masters.findOneAndUpdate(
         { humanId: humanId },
-        req.body,
+        { humanId, firstName, lastName, specialization, regalies },
         { upsert: false },
         null
       );
@@ -127,22 +129,22 @@ router.post('/create', async (req, res) => {
         bigPic,
         date
       });
-    }
 
-    if (Object.keys(req.files).length !== 0) {
-      let bigPic = req.files.bigPic;
-      const realName = bigPic.name;
-      const guidName = uuid();
-      const ext = path.extname(realName);
+      if (Object.keys(req.files).length !== 0) {
+        let bigPic = req.files.bigPic;
+        const realName = bigPic.name;
+        const guidName = uuid();
+        const ext = path.extname(realName);
 
-      master.bigPic = {
-        guid: guidName,
-        ext
-      };
+        master.bigPic = {
+          guid: guidName,
+          ext
+        };
 
-      bigPic.mv(`./upload/${guidName}${ext}`, function(err) {
-        if (err) throw new Error(err);
-      });
+        bigPic.mv(`./upload/${guidName}${ext}`, function(err) {
+          if (err) throw new Error(err);
+        });
+      }
     }
 
     await master.save();
