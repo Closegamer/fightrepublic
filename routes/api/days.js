@@ -11,10 +11,8 @@ const path = require('path');
 // @access   Public
 router.post('/load', async (req, res) => {
   const { day } = req.body;
-  console.log('api days load ' + day);
   try {
     const rows = await Schedule.findOne({ day });
-    console.log(rows);
     res.json({ success: true, rows: rows ? rows.data : [] });
   } catch (err) {
     console.error(err.message);
@@ -26,7 +24,6 @@ router.post('/load', async (req, res) => {
 // @desc     Saving lessons
 // @access   Public
 router.post('/save', async (req, res) => {
-  console.log('api days save');
   const { data, day } = req.body;
 
   try {

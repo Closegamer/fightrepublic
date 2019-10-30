@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import { MDBRow, MDBContainer, MDBCol, MDBBtn } from 'mdbreact';
+import {
+  MDBRow,
+  MDBContainer,
+  MDBCol,
+  MDBBtn,
+  MDBIcon,
+  MDBNavLink
+} from 'mdbreact';
 import axios from 'axios';
 import '../../styles.css';
 import config from '../../../../config.json';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as mastersActions from '../../../../ducks/masters';
 
 const uploadDir = config.uploadDir;
 
@@ -36,6 +46,17 @@ export class MastersControl extends Component {
       });
   }
 
+  // editMaster = humanId => {
+  //   // console.log('editMaster: ', humanId);
+  //   const { mastersActions } = this.props;
+  //   mastersActions.loadMaster(humanId);
+  //   // window.location.assign('/Masters/Edit');
+  // };
+
+  // deleteMaster = humanId => {
+  //   console.log('deleteMaster: ', humanId);
+  // };
+
   render() {
     return (
       <div>
@@ -53,6 +74,7 @@ export class MastersControl extends Component {
                   <th scope='col'>Специализация</th>
                   <th scope='col'>Регалии</th>
                   <th scope='col'>Фото</th>
+                  <th scope='col'>Управление</th>
                 </tr>
               </thead>
               <tbody>
@@ -77,6 +99,20 @@ export class MastersControl extends Component {
                             />
                           )}
                       </td>
+                      <td>
+                        <MDBNavLink
+                          color='success'
+                          to={'/admin/masters/create/' + `${master.humanId}`}
+                        >
+                          <MDBIcon far icon='edit' />
+                        </MDBNavLink>
+                        <MDBNavLink
+                          color='success'
+                          to={'/admin/masters/delete/' + `${master.humanId}`}
+                        >
+                          <MDBIcon far icon='trash-alt' />
+                        </MDBNavLink>
+                      </td>
                     </tr>
                   );
                 })}
@@ -89,4 +125,13 @@ export class MastersControl extends Component {
   }
 }
 
-export default MastersControl;
+const mapStateToProps = ({}) => ({});
+
+const mapDispatchToProps = dispatch => ({
+  mastersActions: bindActionCreators({ ...mastersActions }, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MastersControl);

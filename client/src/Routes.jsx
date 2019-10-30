@@ -16,6 +16,7 @@ const ScheduleShow = lazy(() => import('./containers/ScheduleShow'));
 const SingleMasterInfo = lazy(() =>
   import('./containers/MastersUniversal/SingleMasterInfo.jsx')
 );
+const AdminMasters = lazy(() => import('./containers/Admin/Masters'));
 
 function Routes(auth) {
   return (
@@ -35,6 +36,11 @@ function Routes(auth) {
           user={auth.user}
           path='/admin'
           component={() => <Admin />}
+        />
+        <PrivateRoute
+          user={auth.user}
+          path='/admin/masters/create'
+          component={() => <AdminMasters />}
         />
       </Switch>
     </Suspense>

@@ -10,7 +10,7 @@ class FileField extends Component {
       <MDBFileInput
         getValue={input.onChange}
         btnTitle='Картинка'
-        btnColor='unique'
+        btnColor='red darken-2'
       >
         <div className='invalid-tooltip'>{error}</div>
       </MDBFileInput>
