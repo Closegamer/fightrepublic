@@ -49,6 +49,10 @@ router.post('/list', async (req, res) => {
 router.post('/create', async (req, res) => {
   let updateFlag = false;
 
+  if (!!req.body.humanId) {
+    updateFlag = true;
+  }
+
   let {
     humanId,
     firstName,
@@ -58,10 +62,8 @@ router.post('/create', async (req, res) => {
     bigPic
   } = req.body;
 
-  if (!!req.body.humanId) {
-    updateFlag = true;
-    let { humanId, firstName, lastName, specialization, regalies } = req.body;
-  }
+  console.log('req.body: ', req.body);
+  console.log('req.files: ', req.files);
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -93,12 +95,38 @@ router.post('/create', async (req, res) => {
     let master = null;
 
     if (updateFlag) {
-      master = await Masters.findOneAndUpdate(
-        { humanId: humanId },
-        { humanId, firstName, lastName, specialization, regalies },
-        { upsert: false },
-        null
-      );
+      if (req.files != null) {
+        if (Object.keys(req.files).length !== 0) {
+          let bigPic = req.files.bigPic;
+          const realName = bigPic.name;
+          const guidName = uuid();
+          const ext = path.extname(realName);
+          bigPic.mv(`./upload/${guidName}${ext}`, function(err) {
+            if (err) throw new Error(err);
+          });
+
+          bigPic = {
+            guid: guidName,
+            ext
+          };
+          master = await Masters.findOneAndUpdate(
+            { humanId: humanId },
+            { humanId, firstName, lastName, specialization, regalies, bigPic },
+            { upsert: false },
+            null
+          );
+          return res.json({ success: true, master });
+        }
+      } else {
+        masterInDb = await Masters.findOne({ humanId: humanId });
+        const bigPic = masterInDb.bigPic;
+        master = await Masters.findOneAndUpdate(
+          { humanId: humanId },
+          { humanId, firstName, lastName, specialization, regalies, bigPic },
+          { upsert: false },
+          null
+        );
+      }
     } else {
       master = await Masters.findOne({ humanId: humanId });
     }
