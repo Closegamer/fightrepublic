@@ -41,7 +41,7 @@ h2 {
 }
 
 .main-container {
-  margin-top: 15px;
+  margin-top: 35px;
   width: 98%;
   min-height: 57.9vh;
 }
@@ -56,6 +56,9 @@ h2 {
 @media (max-width: 375px) {
   .main-container {
     margin-top: 160px;
+  }
+  .mt35 {
+    margin-top: 55px;
   }
 }
 

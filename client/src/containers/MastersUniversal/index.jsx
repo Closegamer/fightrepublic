@@ -38,6 +38,9 @@ export class MastersUniversalControl extends Component {
     const masters = this.state.masters;
     return (
       <MDBContainer className='main-container text-center' fluid>
+        <h2 className='h1-responsive font-weight-bold text-center my-5'>
+          Тренеры
+        </h2>
         <MDBRow>
           {!!masters[0] &&
             masters.map((master, index) => {
