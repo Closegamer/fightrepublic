@@ -19,6 +19,7 @@ const SingleMasterInfo = lazy(() =>
 const AdminMasters = lazy(() => import('./containers/Admin/Masters'));
 
 function Routes(auth) {
+  console.log('auth:', auth);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
