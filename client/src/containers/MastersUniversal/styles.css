@@ -20,8 +20,7 @@
 }
 
 .main-container {
-  /* min-width: 200px;
-  max-width: 300px; */
+  /* margin-top: 100px; */
 }
 
 .noPaddingLeft {
@@ -32,9 +31,12 @@
   max-width: 400px;
 }
 
-@media screen and (max-width: 376px) {
+@media (max-width: 415px) {
   .limitedSize {
     max-width: 100%;
+  }
+  .main-container {
+    margin-top: 100px;
   }
 }
 

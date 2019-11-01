@@ -19,9 +19,6 @@ function HomePage(props) {
         <Schedule />
       </div>
       <div className='sepBlock'>
-        <h2 className='h1-responsive font-weight-bold text-center my-5'>
-          Тренеры
-        </h2>
         <MastersUniversal />
       </div>
       <div className='sepBlock'>
