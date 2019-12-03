@@ -3,3 +3,11 @@
   margin-top: 30px;
   padding-top: 30px;
 }
+
+.redStar {
+  color: red;
+}
+
+.noMarker {
+  list-style-type: none;
+}
