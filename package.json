@@ -1,7 +1,7 @@
 {
-  "name": "FightRepublic",
+  "name": "CryBaby",
   "version": "1.0.0",
-  "description": "Boxer School",
+  "description": "Betting stuff",
   "main": "server.js",
   "scripts": {
     "start": "node server",
