@@ -1,51 +1,55 @@
-import React, { Suspense, lazy } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PrivateRoute from './components/PrivateRoute';
+import React, { Suspense, lazy } from "react";
+import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import PrivateRoute from "./components/PrivateRoute";
 
-const Home = lazy(() => import('./containers/Home'));
-const Contacts = lazy(() => import('./containers/Contacts'));
-const Admin = lazy(() => import('./containers/Admin'));
-const Recovery = lazy(() => import('./containers/Recovery'));
-const Info = lazy(() => import('./containers/Info'));
-const Price = lazy(() => import('./containers/Price'));
-const Photos = lazy(() => import('./containers/Photos'));
-const MastersUniversal = lazy(() => import('./containers/MastersUniversal'));
-const ScheduleShow = lazy(() => import('./containers/ScheduleShow'));
+const Home = lazy(() => import("./containers/Home"));
+const Contacts = lazy(() => import("./containers/Contacts"));
+const Admin = lazy(() => import("./containers/Admin"));
+const Recovery = lazy(() => import("./containers/Recovery"));
+const Info = lazy(() => import("./containers/Info"));
+const Price = lazy(() => import("./containers/Price"));
+const Photos = lazy(() => import("./containers/Photos"));
+const MastersUniversal = lazy(() => import("./containers/MastersUniversal"));
+const ScheduleShow = lazy(() => import("./containers/ScheduleShow"));
+const Parcer = lazy(() => import("./containers/Parcer"));
+const Squatter = lazy(() => import("./containers/Squatter"));
 const SingleMasterInfo = lazy(() =>
-  import('./containers/MastersUniversal/SingleMasterInfo.jsx')
+  import("./containers/MastersUniversal/SingleMasterInfo.jsx")
 );
-const AdminMasters = lazy(() => import('./containers/Admin/Masters'));
+const AdminMasters = lazy(() => import("./containers/Admin/Masters"));
 
 function Routes(auth) {
-  console.log('auth:', auth);
+  console.log("auth:", auth);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/contacts' component={Contacts} />
-        <Route exact path='/recovery/' component={Recovery} />
-        <Route exact path='/info/' component={Info} />
-        <Route exact path='/price/' component={Price} />
-        <Route exact path='/photos/' component={Photos} />
-        <Route exact path='/schedule-show/' component={ScheduleShow} />
-        <Route exact path='/masters' component={MastersUniversal} />
-        <Route exact path='/masters/:humanId' component={SingleMasterInfo} />
-        <Route exact path='/recovery/:token' component={Recovery} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/contacts" component={Contacts} />
+        <Route exact path="/recovery/" component={Recovery} />
+        <Route exact path="/info/" component={Info} />
+        <Route exact path="/price/" component={Price} />
+        <Route exact path="/photos/" component={Photos} />
+        <Route exact path="/parcer/" component={Parcer} />
+        <Route exact path="/squatter/" component={Squatter} />
+        <Route exact path="/schedule-show/" component={ScheduleShow} />
+        <Route exact path="/masters" component={MastersUniversal} />
+        <Route exact path="/masters/:humanId" component={SingleMasterInfo} />
+        <Route exact path="/recovery/:token" component={Recovery} />
         <PrivateRoute
           user={auth.user}
-          path='/admin'
+          path="/admin"
           component={() => <Admin />}
         />
         <PrivateRoute
           user={auth.user}
-          path='/admin/masters/create'
+          path="/admin/masters/create"
           component={() => <AdminMasters />}
         />
         <PrivateRoute
           user={auth.user}
-          path='/admin/masters/delete'
+          path="/admin/masters/delete"
           component={() => <AdminMasters />}
         />
       </Switch>
@@ -59,7 +63,4 @@ const mapStateToProps = ({ auth }) => ({
 
 const mapDispatchToProps = dispatch => ({});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Routes);
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);

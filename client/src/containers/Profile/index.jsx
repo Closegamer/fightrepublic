@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { MDBRow, MDBContainer, MDBCol } from "mdbreact";
-import ContactForm from "./contactForm";
+import ProfileForm from "./profileForm";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as publicActions from "../../ducks/public";
-
-export class Contacts extends Component {
+import * as usersActions from "../../ducks/users";
+import FreeKassa from "./freeKassa";
+export class Profile extends Component {
   handleSubmit = values => {
     const user = values.user;
-    const header = values.header;
-    const message = values.message;
-    this.props.publicActions.userSendMessage(user, header, message);
+    const phone = values.phone;
+    const address = values.address;
+    // console.log("handle: ", user, phone, address);
+    this.props.usersActions.updateUser(user, phone, address);
     this.props.history.push("/");
   };
 
@@ -24,28 +25,34 @@ export class Contacts extends Component {
     if (isLoggedIn) {
       initialValues = {
         user: user.nick,
-        email: user.email
+        email: user.email,
+        phone: user.phone,
+        address: user.address
       };
     } else {
       initialValues = {};
     }
 
     return (
-      <MDBContainer className="main-container" fluid>
+      <MDBContainer className="admin-cont" fluid>
         <MDBRow>
           <MDBCol xl="12" xs="12" className="contentArea-container">
-            <h3>Контактная информация</h3>
+            <h3>Профиль пользователя</h3>
             <br />
             <br />
             <MDBRow>
-              <MDBCol xl="12" sm="12" md="12" xs="12">
-                <h5>Форма обратной связи</h5>
-                <ContactForm
+              <MDBCol xl="6" sm="6" md="6" xs="12">
+                <h5>Данные пользователя</h5>
+                <ProfileForm
                   onSubmit={this.handleSubmit}
                   user={user}
                   isLoggedIn={isLoggedIn}
                   initialValues={initialValues}
                 />
+              </MDBCol>
+              <MDBCol xl="6" sm="6" md="6" xs="12">
+                <h5>Пополнить баланс</h5>
+                {/* <FreeKassa /> */}
               </MDBCol>
             </MDBRow>
           </MDBCol>
@@ -62,7 +69,7 @@ const mapStateToProps = ({ auth }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  publicActions: bindActionCreators({ ...publicActions }, dispatch)
+  usersActions: bindActionCreators({ ...usersActions }, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

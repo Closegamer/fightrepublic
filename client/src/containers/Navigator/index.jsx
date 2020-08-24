@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -129,11 +129,19 @@ export class Navigator extends Component {
                     <div className="d-md-inline">Вы вошли как {user.nick}</div>
                   </MDBNavLink>
                 </MDBNavItem>
+                {/* <MDBNavItem>
+                  <MDBNavLink to="/profile">
+                    <MDBIcon icon="credit-card" className="d-inline-inline" />{" "}
+                    <div className="d-none d-md-inline">
+                      Баланс: {balance.value}
+                    </div>
+                  </MDBNavLink>
+                </MDBNavItem> */}
               </React.Fragment>
             )}
           </MDBNavbarNav>
           <MDBNavbarNav right style={specialCaseNavbarStyles}>
-            <MDBNavItem
+            {/* <MDBNavItem
               active={this.props.location.pathname.includes("/masters")}
               className="d-none d-sm-block"
             >
@@ -159,25 +167,34 @@ export class Navigator extends Component {
                 <MDBIcon icon="clipboard-list" className="d-inline-inline" />{" "}
                 <div className="d-none d-md-inline">Расписание</div>
               </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem
-              active={this.props.location.pathname.includes("/photos")}
-              className="d-none d-sm-block"
-            >
-              <MDBNavLink to="/photos">
-                <MDBIcon icon="camera" className="d-inline-inline" />{" "}
-                <div className="d-none d-md-inline">Галерея</div>
-              </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem
-              active={this.props.location.pathname.includes("/price")}
-              className="d-none d-sm-block"
-            >
-              <MDBNavLink to="/price">
-                <MDBIcon icon="money-bill" className="d-inline-inline" />{" "}
-                <div className="d-none d-md-inline">Цены</div>
-              </MDBNavLink>
-            </MDBNavItem>
+            </MDBNavItem>*/}
+            {isLoggedIn && (
+              <Fragment>
+                <MDBNavItem
+                  active={this.props.location.pathname.includes("/parcer")}
+                  className="d-none d-sm-block"
+                >
+                  <MDBNavLink to="/parcer">
+                    <MDBIcon icon="camera" className="d-inline-inline" />{" "}
+                    {user.role === "admin" && (
+                      <div className="d-none d-md-inline">Парсер</div>
+                    )}
+                    {user.role !== "admin" && (
+                      <div className="d-none d-md-inline">Рейтинг</div>
+                    )}
+                  </MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem
+                  active={this.props.location.pathname.includes("/squatter")}
+                  className="d-none d-sm-block"
+                >
+                  <MDBNavLink to="/squatter">
+                    <MDBIcon icon="money-bill" className="d-inline-inline" />{" "}
+                    <div className="d-none d-md-inline">Сквоттер</div>
+                  </MDBNavLink>
+                </MDBNavItem>
+              </Fragment>
+            )}
             <MDBNavItem
               active={this.props.location.pathname.includes("/contacts")}
               className="d-none d-sm-block"
