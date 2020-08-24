@@ -10,7 +10,6 @@ import {
 } from "mdbreact";
 import ParcerResults from "./parcerResults.jsx";
 import ParcerSettings from "./parcerSettings.jsx";
-
 class Parcer extends Component {
   state = {
     isRunning: false
@@ -28,6 +27,7 @@ class Parcer extends Component {
       console.log("stopped", values);
     }
     if (isRunning) {
+      const url = "https://www.elm.su";
       console.log("working", values);
     }
   };
