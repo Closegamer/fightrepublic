@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as lessonsActions from '../../ducks/lessons';
-import * as usersActions from '../../ducks/users';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import Lessons from './Lessons';
-import Users from './Users';
-import Masters from './Masters';
-import Schedule from './Schedule';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as lessonsActions from "../../ducks/lessons";
+import * as usersActions from "../../ducks/users";
+import { Route, Switch, withRouter } from "react-router-dom";
+import Lessons from "./Lessons";
+import Users from "./Users";
+import Masters from "./Masters";
+import Schedule from "./Schedule";
+import Parcer from "./Parcer";
+import Squatter from "./Squatter";
 
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBNavLink } from 'mdbreact';
-import './styles.css';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBNavLink } from "mdbreact";
+import "./styles.css";
 
 const Lost = () => <div>404</div>;
 
@@ -19,9 +21,9 @@ export class Admin extends Component {
     const { match } = this.props;
 
     return (
-      <MDBContainer className='main-container' fluid>
+      <MDBContainer className="main-container" fluid>
         <MDBRow>
-          <MDBCol xl='12' xs='12' className='contentArea-container'>
+          <MDBCol xl="12" xs="12" className="contentArea-container">
             <MDBRow>
               <MDBCol>
                 <h3>Админка - панель управления</h3>
@@ -29,33 +31,41 @@ export class Admin extends Component {
             </MDBRow>
             <MDBRow>
               <MDBCol
-                xs='12'
-                sm='3'
-                md='3'
-                lg='3'
-                xl='3'
-                className='rightBordered'
+                xs="12"
+                sm="3"
+                md="3"
+                lg="3"
+                xl="3"
+                className="rightBordered"
               >
                 <MDBNavLink to={`${match.path}/users`}>
-                  <MDBBtn className='adminBtn'>Пользователи</MDBBtn>
+                  <MDBBtn className="adminBtn">Пользователи</MDBBtn>
                 </MDBNavLink>
-                <MDBNavLink to={`${match.path}/masters`}>
+                <MDBNavLink to={`${match.path}/parcer`}>
+                  <MDBBtn className="adminBtn">Парсер</MDBBtn>
+                </MDBNavLink>
+                <MDBNavLink to={`${match.path}/squatter`}>
+                  <MDBBtn className="adminBtn">Сквоттер</MDBBtn>
+                </MDBNavLink>
+                {/* <MDBNavLink to={`${match.path}/masters`}>
                   <MDBBtn className='adminBtn'>Тренеры</MDBBtn>
-                </MDBNavLink>
-                <MDBNavLink to={`${match.path}/lessons`}>
+                </MDBNavLink> */}
+                {/* <MDBNavLink to={`${match.path}/lessons`}>
                   <MDBBtn className='adminBtn'>Занятия</MDBBtn>
-                </MDBNavLink>
-                <MDBNavLink to={`${match.path}/schedule`}>
+                </MDBNavLink> */}
+                {/* <MDBNavLink to={`${match.path}/schedule`}>
                   <MDBBtn className='adminBtn'>Расписание</MDBBtn>
-                </MDBNavLink>
+                </MDBNavLink> */}
               </MDBCol>
-              <MDBCol xs='12' sm='9' md='9' lg='9' xl='9'>
+              <MDBCol xs="12" sm="9" md="9" lg="9" xl="9">
                 <Switch>
                   <Route path={`${match.path}/`} exact component={Lessons} />
                   <Route path={`${match.path}/lessons`} component={Lessons} />
                   <Route path={`${match.path}/users`} component={Users} />
                   <Route path={`${match.path}/masters`} component={Masters} />
                   <Route path={`${match.path}/schedule`} component={Schedule} />
+                  <Route path={`${match.path}/parcer`} component={Parcer} />
+                  <Route path={`${match.path}/squatter`} component={Squatter} />
                   <Route component={Lost} />
                 </Switch>
               </MDBCol>
@@ -85,7 +95,4 @@ const mapDispatchToProps = dispatch => ({
   usersActions: bindActionCreators({ ...usersActions }, dispatch)
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Admin));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Admin));
