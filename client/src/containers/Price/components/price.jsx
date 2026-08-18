@@ -20,7 +20,7 @@ function PriceInfo(props) {
                   </li>
                   <li>
                     <MDBIcon icon="certificate" className="redStar" />{" "}
-                    Безлимитные дневные карты с 7:00 - 17:00 на 6, 12 месяцев.
+                    Безлимитные дневные карты с 7:00 - 17:00 на 6,12 месяцев.
                   </li>
                   <li>
                     <MDBIcon icon="certificate" className="redStar" /> Клубная
@@ -28,7 +28,7 @@ function PriceInfo(props) {
                   </li>
                   <li>
                     <MDBIcon icon="certificate" className="redStar" /> Детские
-                    клубные карты на 1 месяц (4, 8, 12 занятий).
+                    клубные карты на 1 месяц (4,8,12 занятий).
                   </li>
                   <li>
                     <MDBIcon icon="certificate" className="redStar" /> Гостевой

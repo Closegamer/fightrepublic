@@ -1,22 +1,22 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const auth = require('../../middleware/auth');
-const config = require('config');
-const sendMail = require('../../utils/sendMail');
+const auth = require("../../middleware/auth");
+const config = require("config");
+const sendMail = require("../../utils/sendMail");
 
 // @route    POST api/public/send-message
 // @desc     Sendinf message to admin from contact form
 // @access   Public
-router.post('/send-message', async (req, res) => {
+router.post("/send-message", async (req, res) => {
   try {
     const user = req.body.user;
     const header = req.body.header;
     const message = req.body.message;
 
     sendMail(
-      'FightRepublic <FightRepublic@yandex.ru>',
-      'FightRepublic@yandex.ru',
-      'Сообщение с контактной формы сайта FightRepublic',
+      "CryBaby <nobelpremia@yandex.ru>",
+      "nobelpremia@yandex.ru",
+      "Сообщение с контактной формы сайта CryBaby",
       `Сообщение с контактной формы от пользователя <b>${user}</b>.<br /><br />Тема: ${header}<br /><br />Сообщение: ${message}`
     );
 
@@ -25,7 +25,7 @@ router.post('/send-message', async (req, res) => {
     });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 

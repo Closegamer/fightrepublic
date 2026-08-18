@@ -1,29 +1,29 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const config = require('config');
-const { check, validationResult } = require('express-validator/check');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
+const { check, validationResult } = require("express-validator/check");
 const {
   createTokenPair,
   createResetToken
-} = require('../../utils/TokenHelpers');
-const auth = require('../../middleware/auth');
-const sendMail = require('../../utils/sendMail');
+} = require("../../utils/TokenHelpers");
+const auth = require("../../middleware/auth");
+const sendMail = require("../../utils/sendMail");
 
-const User = require('../../models/User');
+const User = require("../../models/User");
 
 // @route    POST api/users
 // @desc     Register user
 // @access   Public
 router.post(
-  '/',
+  "/",
   [
-    check('nick', 'Пожалуйста, введите Ваше имя в системе').isLength({
+    check("nick", "Пожалуйста, введите Ваше имя в системе").isLength({
       min: 3
     }),
-    check('email', 'Пожалуйста, введите корректый email').isEmail(),
-    check('password', 'Пароль должен содержать не менее 6 символов').isLength({
+    check("email", "Пожалуйста, введите корректый email").isEmail(),
+    check("password", "Пароль должен содержать не менее 6 символов").isLength({
       min: 6
     })
   ],
@@ -36,7 +36,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res
         .status(400)
-        .json({ success: false, error: errors.array().join(', ') });
+        .json({ success: false, error: errors.array().join(", ") });
     }
 
     const { nick, email, password } = req.body;
@@ -46,11 +46,11 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ success: false, error: 'User already exists' });
+          .json({ success: false, error: "User already exists" });
       }
 
-      let role = 'customer';
-      let stuff = 'no';
+      let role = "customer";
+      let stuff = "no";
       let balance = 0;
       let discount = 0;
       let contribution = 0;
@@ -88,16 +88,16 @@ router.post(
       const tokensData = await createTokenPair(payload, payload);
 
       sendMail(
-        'FightRepublic <FightRepublic@yandex.ru>',
+        "CryBaby <nobelpremia@yandex.ru>",
         email,
-        'Успешная регистрация',
+        "Успешная регистрация",
         `Ваш пароль: <b>${password}</b>`
       );
 
       res.json({ success: true, tokens: tokensData });
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server error');
+      res.status(500).send("Server error");
     }
   }
 );
@@ -105,7 +105,7 @@ router.post(
 // @route    GET api/users/balance
 // @desc     Get User Balance
 // @access   Public
-router.get('/balance', auth, async (req, res) => {
+router.get("/balance", auth, async (req, res) => {
   try {
     const currentUserId = req.user.id;
     const foundUser = await User.findById(currentUserId);
@@ -114,7 +114,7 @@ router.get('/balance', auth, async (req, res) => {
     if (!foundUser) {
       res.json({
         success: false,
-        error: 'User not found'
+        error: "User not found"
       });
     }
 
@@ -124,7 +124,7 @@ router.get('/balance', auth, async (req, res) => {
     });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
@@ -132,9 +132,9 @@ router.get('/balance', auth, async (req, res) => {
 // @desc     POST User Balance
 // @access   Public
 router.post(
-  '/balance',
+  "/balance",
   auth,
-  [check('balance', 'Пожалуйста, введите сумму').isNumeric()],
+  [check("balance", "Пожалуйста, введите сумму").isNumeric()],
   async (req, res) => {
     const errors = validationResult(req).formatWith(
       ({ location, msg, param, value, nestedErrors }) => {
@@ -144,7 +144,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res
         .status(400)
-        .json({ success: false, error: errors.array().join(', ') });
+        .json({ success: false, error: errors.array().join(", ") });
     }
 
     const { balance } = req.body;
@@ -165,7 +165,7 @@ router.post(
       res.json({ success: true, balance: updated.balance });
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server error');
+      res.status(500).send("Server error");
     }
   }
 );
@@ -173,7 +173,7 @@ router.post(
 // @route    POST api/users/reset
 // @desc     Reset User Password
 // @access   Public
-router.post('/reset', async (req, res) => {
+router.post("/reset", async (req, res) => {
   try {
     const currentUserEmail = req.body.userEmail;
     const foundUser = await User.findOne({ email: currentUserEmail });
@@ -181,7 +181,7 @@ router.post('/reset', async (req, res) => {
     if (!foundUser) {
       res.json({
         success: false,
-        error: 'User not found'
+        error: "User not found"
       });
     }
 
@@ -199,9 +199,9 @@ router.post('/reset', async (req, res) => {
       '">Сбросить пароль</a>';
 
     sendMail(
-      'FightRepublic <FightRepublic@yandex.ru>',
+      "CryBaby <nobelpremia@yandex.ru>",
       foundUserEmail,
-      'Сброс пароля',
+      "Сброс пароля",
       `Перейди по ссылке, товарищ: <b>${recoveryLink}</b>`
     );
 
@@ -211,14 +211,14 @@ router.post('/reset', async (req, res) => {
     });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
 // @route    GET api/users/get-user-for-reset
 // @desc     Get user for reset password
 // @access   Public
-router.get('/reset-user-password/:token', async (req, res) => {
+router.get("/reset-user-password/:token", async (req, res) => {
   try {
     const resetToken = req.params.token;
 
@@ -227,13 +227,13 @@ router.get('/reset-user-password/:token', async (req, res) => {
     if (!resetTokenFromTheBase) {
       return res
         .status(401)
-        .json({ success: false, error: 'некорректная ссылка' });
+        .json({ success: false, error: "некорректная ссылка" });
     }
 
     if (resetTokenFromTheBase) {
       var decodedResetToken = jwt.verify(
         resetTokenFromTheBase.resetToken,
-        config.get('jwtResetSecret')
+        config.get("jwtResetSecret")
       );
 
       const user = await User.findById(decodedResetToken.user.id);
@@ -241,11 +241,11 @@ router.get('/reset-user-password/:token', async (req, res) => {
     }
   } catch (err) {
     console.error(err.message);
-    res.status(400).json({ error: 'Невалидный токен' });
+    res.status(400).json({ error: "Невалидный токен" });
   }
 });
 
-router.post('/password-recovered', async (req, res) => {
+router.post("/password-recovered", async (req, res) => {
   try {
     const user = req.body.user;
     const password = req.body.password;
@@ -262,9 +262,9 @@ router.post('/password-recovered', async (req, res) => {
       );
 
       sendMail(
-        'FightRepublic <FightRepublic@yandex.ru>',
+        "CryBaby <nobelpremia@yandex.ru>",
         userToUpdate.email,
-        'Ваш пароль сброшен.',
+        "Ваш пароль сброшен.",
         `Новый пароль: ${password}`
       );
 
@@ -276,14 +276,14 @@ router.post('/password-recovered', async (req, res) => {
     }
   } catch (err) {
     console.error(err.message);
-    res.status(400).json({ error: 'Восстановить пароль не получилось' });
+    res.status(400).json({ error: "Восстановить пароль не получилось" });
   }
 });
 
 // @route    GET api/users/get-user-for-reset
 // @desc     Get user for reset password
 // @access   Public
-router.get('/reset-user-password/:token', async (req, res) => {
+router.get("/reset-user-password/:token", async (req, res) => {
   try {
     const resetToken = req.params.token;
 
@@ -292,13 +292,13 @@ router.get('/reset-user-password/:token', async (req, res) => {
     if (!resetTokenFromTheBase) {
       return res
         .status(401)
-        .json({ success: false, error: 'некорректная ссылка' });
+        .json({ success: false, error: "некорректная ссылка" });
     }
 
     if (resetTokenFromTheBase) {
       var decodedResetToken = jwt.verify(
         resetTokenFromTheBase.resetToken,
-        config.get('jwtResetSecret')
+        config.get("jwtResetSecret")
       );
 
       const user = await User.findById(decodedResetToken.user.id);
@@ -306,11 +306,11 @@ router.get('/reset-user-password/:token', async (req, res) => {
     }
   } catch (err) {
     console.error(err.message);
-    res.status(400).json({ error: 'Невалидный токен' });
+    res.status(400).json({ error: "Невалидный токен" });
   }
 });
 
-router.post('/load-users', async (req, res) => {
+router.post("/load-users", async (req, res) => {
   try {
     const usersArray = await User.find();
     if (usersArray) {
@@ -321,7 +321,7 @@ router.post('/load-users', async (req, res) => {
     }
   } catch (err) {
     console.error(err.message);
-    res.status(400).json({ error: 'Получить пользователей не получилось' });
+    res.status(400).json({ error: "Получить пользователей не получилось" });
   }
 });
 

@@ -1,9 +1,9 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const path = require('path');
-const fileUpload = require('express-fileupload');
-
-const fs = require('fs');
+const express = require("express");
+const connectDB = require("./config/db");
+const path = require("path");
+const fileUpload = require("express-fileupload");
+const ws = require("ws");
+const fs = require("fs");
 
 // const sslOptions = {
 //   key: fs.readFileSync('ssl/sameplaces.ru.key'),
@@ -36,32 +36,32 @@ app.use(
   fileUpload({
     limits: { fileSize: 1 * 1024 * 1024 },
     useTempFiles: true,
-    tempFileDir: './tmp/'
+    tempFileDir: "./tmp/"
   })
 );
 
 app.use(express.json({ extended: false }));
 
 // Define Routes
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/refresh', require('./routes/api/refresh'));
-app.use('/api/public', require('./routes/api/public'));
-app.use('/api/uploads', require('./routes/api/uploads'));
-app.use('/api/lessons', require('./routes/api/lessons'));
-app.use('/api/masters', require('./routes/api/masters'));
-app.use('/api/days', require('./routes/api/days'));
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/refresh", require("./routes/api/refresh"));
+app.use("/api/public", require("./routes/api/public"));
+app.use("/api/uploads", require("./routes/api/uploads"));
+app.use("/api/lessons", require("./routes/api/lessons"));
+app.use("/api/masters", require("./routes/api/masters"));
+app.use("/api/days", require("./routes/api/days"));
+app.use("/api/sites", require("./routes/api/sites"));
 
 // Serve static assets in production
-app.use('/api/upload', express.static(__dirname + '/upload'));
-app.use('/upload', express.static(__dirname + '/upload'));
+app.use("/api/upload", express.static(__dirname + "/upload"));
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static('client/build'));
+  app.use(express.static("client/build"));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 

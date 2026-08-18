@@ -3,6 +3,11 @@
   background-color: #cc0000 !important;
 }
 
+.adminBtnGreen {
+  min-width: 200px !important;
+  background-color: #00695c !important;
+}
+
 .dayBtn {
   padding: 5px !important;
   min-width: 100px !important;

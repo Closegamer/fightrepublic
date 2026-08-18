@@ -1,3 +1,3 @@
-const SITE_NAME = 'Fight Republic';
+const SITE_NAME = "CryBaby";
 
 export { SITE_NAME };
