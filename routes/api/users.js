@@ -194,7 +194,7 @@ router.post("/reset", async (req, res) => {
     const tokenData = await createResetToken(payload);
 
     const recoveryLink =
-      '<a href="http://localhost:3000/recovery/' +
+      '<a href="http://fightrepublic.ru:3000/recovery/' +
       tokenData.resetToken +
       '">Сбросить пароль</a>';
 

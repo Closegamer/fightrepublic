@@ -10,7 +10,6 @@ const path = require('path');
 // @desc     Lessons list
 // @access   Public
 router.post('/list', async (req, res) => {
-  console.log('api lessons list');
   try {
     const lessons = await Lessons.find();
 

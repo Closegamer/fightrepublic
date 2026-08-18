@@ -1,6 +1,6 @@
 {
-  "socketEndpointHTTP": "localhost:4001",
-  "socketEndpointHTTPS": "localhost:4002",
-  "clientPortEndpoint": "localhost:5000",
-  "uploadDir": "http://localhost:5000/api/upload/"
+  "socketEndpointHTTP": "fightrepublic.ru:4001",
+  "socketEndpointHTTPS": "fightrepublic.ru:4002",
+  "clientPortEndpoint": "fightrepublic.ru:5000",
+  "uploadDir": "http://fightrepublic.ru/upload/"
 }
